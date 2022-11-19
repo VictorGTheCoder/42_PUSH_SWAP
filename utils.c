@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:08:01 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/19 22:08:01 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/19 23:35:45 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,26 @@ void print_list(t_dlist list)
 	}
 
 	printf("\n");
+}
+
+void	free_list(t_dlist list)
+{
+	t_node *next_node;
+	int		i;
+
+	i = 0;
+	if (!list)
+		return ;
+	
+	while (list->first)
+	{	
+		next_node = list->first->next;
+		printf("%d free\n", list_get_first(list));
+		free(list->first);
+		list->first = next_node;
+		i++;
+	}
+	free(list);
+	printf("%d node have been freed\n");
+	list = NULL;
 }
