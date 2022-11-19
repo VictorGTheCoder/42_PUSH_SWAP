@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:08:01 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/19 23:35:45 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/20 00:26:07 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void print_list(t_dlist list)
 {
 	if(!list)
 	{
-		printf("la Liste est vide.\n");
+		printf("la Liste est vide. Longeur de la liste %d\n", list_length(list));
 		return;
 	}
 
@@ -54,8 +54,7 @@ void print_list(t_dlist list)
 		printf("[%d] ", temp->value);
 		temp = temp->next;
 	}
-
-	printf("\n");
+	printf("Longeur de la liste %d\n", list_length(list));
 }
 
 void	free_list(t_dlist list)
@@ -63,10 +62,9 @@ void	free_list(t_dlist list)
 	t_node *next_node;
 	int		i;
 
-	i = 0;
 	if (!list)
 		return ;
-	
+	i = 0;	
 	while (list->first)
 	{	
 		next_node = list->first->next;
@@ -76,6 +74,6 @@ void	free_list(t_dlist list)
 		i++;
 	}
 	free(list);
-	printf("%d node have been freed\n");
+	printf("%d node have been freed\n", i);
 	list = NULL;
 }

@@ -33,10 +33,13 @@ t_dlist pop_front(t_dlist list);
  
  /*----------------------------------------*/
 
-void sa(t_dlist stack_a);
-void sb(t_dlist stack_b);
-void ss(t_dlist stack_a, t_dlist stack_b);
+void	ft_switch(t_dlist stack);
+void	push(t_dlist stack_1, t_dlist stack_2);
+void	rotate(t_dlist stack);
+void	reverse_rotate(t_dlist stack);
 
-void push(t_dlist stack_a, t_dlist stack_b);
+void	ss(t_dlist stack_1, t_dlist stack_2);
+void	rrr(t_dlist stack1, t_dlist stack2);
+void	rr(t_dlist stack1, t_dlist stack2);
 
 #endif

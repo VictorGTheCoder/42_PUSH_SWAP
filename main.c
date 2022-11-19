@@ -6,37 +6,45 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/19 23:36:16 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/20 00:36:07 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int main(int argc, char const *argv[])
+void	sort(t_dlist stack_a, t_dlist stack_b)
+{
+	(void) stack_a;
+	(void) stack_b;
+}
+
+void	push_swap(int *entry_list)
 {
 	t_dlist stack_a = new_list();
 	t_dlist stack_b = new_list();
 
-	stack_a = push_back(stack_a, 10);
-	stack_a = push_back(stack_a, 5);
+	while (*entry_list != -1)
+	{
+		stack_a = push_front(stack_a, *entry_list);
+		entry_list++;
+	}
 	
-	stack_b = push_back(stack_b, 3);
-	stack_b = push_back(stack_b, 8);
-	stack_b = push_back(stack_b, 8);
+	print_list(stack_a);
+	print_list(stack_b);
 
+	printf("<------------------------------------------------------------->\n");
+
+	rr(stack_a, stack_b);
 	print_list(stack_a);
-	printf("TAILLE DE stackA %d\n", list_length(stack_a));
 	print_list(stack_b);
-	printf("TAILLE DE stackB %d\n", list_length(stack_b));
-	
-	//push(stack_a, stack_b);
-	
-	print_list(stack_a);
-	printf("TAILLE DE stackA %d\n", list_length(stack_a));
-	print_list(stack_b);
-	printf("TAILLE DE stackB %d\n", list_length(stack_b));
 
 	free_list(stack_a);
-	free_list(stack_b);
+}
+
+int main(void)
+{
+	int nb[] = {1,2,31,0,4,5,6,7,8,9,-1};
+
+	push_swap(nb);
 	return 0;
 }

@@ -6,34 +6,27 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/19 23:04:22 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/20 00:28:33 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void sa(t_dlist stack_a)
+void ft_switch(t_dlist stack)
 {
 	int temp;
 
-	temp = stack_a->first->value;
-	stack_a->first->value = stack_a->first->next->value;
-	stack_a->first->next->value = temp;
+	if (stack->length == 1 || !stack)
+		return ;
+	temp = stack->first->value;
+	stack->first->value = stack->first->next->value;
+	stack->first->next->value = temp;
 }
 
-void sb(t_dlist stack_b)
+void ss(t_dlist stack_1, t_dlist stack_2)
 {
-	int temp;
-
-	temp = stack_b->first->value;
-	stack_b->first->value = stack_b->first->next->value;
-	stack_b->first->next->value = temp;
-}
-
-void ss(t_dlist stack_a, t_dlist stack_b)
-{
-	sa(stack_a);
-	sb(stack_b);
+	ft_switch(stack_1);
+	ft_switch(stack_2);
 }
 
 void push(t_dlist stack_1, t_dlist stack_2)
@@ -51,4 +44,40 @@ void push(t_dlist stack_1, t_dlist stack_2)
 	stack_1->length++;
 	stack_2->length--;
 
+}
+
+void reverse_rotate(t_dlist stack)
+{
+	if (list_length(stack) == 1 || list_length(stack) == 0)
+		return ;
+	stack->last->prv->next = NULL;
+	stack->first->prv = stack->last;
+	stack->last->next = stack->first;
+	stack->first = stack->last;
+	stack->last = stack->last->prv;
+	stack->first->prv = NULL;
+}
+
+void rotate(t_dlist stack)
+{
+	if (list_length(stack) == 1 || list_length(stack) == 0)
+		return ;
+	stack->first->next->prv = NULL;
+	stack->last->next = stack->first;
+	stack->first->prv = stack->last;
+	stack->last = stack->first;
+	stack->first = stack->first->next;
+	stack->last->next = NULL;
+}
+
+void	rr(t_dlist stack1, t_dlist stack2)
+{
+	rotate(stack1);
+	rotate(stack2);
+}
+
+void	rrr(t_dlist stack1, t_dlist stack2)
+{
+	reverse_rotate(stack1);
+	reverse_rotate(stack2);
 }
