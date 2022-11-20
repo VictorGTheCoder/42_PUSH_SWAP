@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/20 00:36:07 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/20 11:46:13 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	push_swap(int *entry_list)
 	free_list(stack_a);
 }
 
-int main(void)
+int main(int argc, char const *argv[])
 {
 	int nb[] = {1,2,31,0,4,5,6,7,8,9,-1};
 

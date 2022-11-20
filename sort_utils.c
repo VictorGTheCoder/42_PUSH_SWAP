@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/20 00:28:33 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/20 11:43:06 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ void ft_switch(t_dlist stack)
 	temp = stack->first->value;
 	stack->first->value = stack->first->next->value;
 	stack->first->next->value = temp;
-}
-
-void ss(t_dlist stack_1, t_dlist stack_2)
-{
-	ft_switch(stack_1);
-	ft_switch(stack_2);
 }
 
 void push(t_dlist stack_1, t_dlist stack_2)
@@ -68,6 +62,12 @@ void rotate(t_dlist stack)
 	stack->last = stack->first;
 	stack->first = stack->first->next;
 	stack->last->next = NULL;
+}
+
+void ss(t_dlist stack_1, t_dlist stack_2)
+{
+	ft_switch(stack_1);
+	ft_switch(stack_2);
 }
 
 void	rr(t_dlist stack1, t_dlist stack2)
