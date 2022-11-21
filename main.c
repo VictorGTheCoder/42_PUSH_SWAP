@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/20 19:38:32 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/21 14:38:07 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	sort(t_dlist stack_a, t_dlist stack_b)
 {
-	printf("SORT\n");
+	(void) stack_a;
+	(void) stack_b;
+	/*printf("SORT\n");
 	t_node *element;
 	int		i;
 	int		action;
@@ -41,7 +43,7 @@ void	sort(t_dlist stack_a, t_dlist stack_b)
 			rotate(stack_a);
 		}
 		
-	}
+	}*/
 }
 
 void	push_swap(int *entry_list)
@@ -57,11 +59,13 @@ void	push_swap(int *entry_list)
 	stack_b = push_back(stack_b, 0);
 	print_list(stack_a);
 	print_list(stack_b);
-
 	printf("<------------------------------------------------------------->\n");
-	//push(stack_b, stack_a);
-	sort(stack_a, stack_b);
 	
+	stack_b = pop_front(stack_b);
+	if (stack_b)
+		ft_switch(&stack_b);
+	//ss(stack_a, stack_b);
+
 	print_list(stack_a);
 	print_list(stack_b);
 
@@ -71,7 +75,7 @@ void	push_swap(int *entry_list)
 
 int main()
 {
-	int nb_input[] = {0,5,2,8,9,3,1,4,7,6,-1};
+	int nb_input[] = {5,2,8,9,0,3,1,4,7,6,-1};
 	//char	*input;
 	//int		*int_input = malloc(100 *(sizeof(int)));
 	//int		i = 0;

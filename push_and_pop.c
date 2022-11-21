@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_and_pop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:50 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/19 22:07:51 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/21 14:21:15 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,32 @@ t_dlist	pop_front(t_dlist list)
 	temp = list->first;
 	list->first = list->first->next;
 	list->first->prv = NULL;
+	temp->next = NULL;
+	temp->prv = NULL;
+	free(temp);
+	temp = NULL;
+	list->length--;
+	return (list);
+}
+
+t_dlist	pop_back(t_dlist list)
+{
+	t_node *temp;
+
+	if (!list)
+	{
+		printf("LISTE VIDE\n");
+		return NULL;
+	}
+	if (list->first == list->last)
+	{
+		free(list);
+		list = NULL;
+		return (NULL);
+	}
+	temp = list->last;
+	list->last = list->last->prv;
+	list->last->next = NULL;
 	temp->next = NULL;
 	temp->prv = NULL;
 	free(temp);
