@@ -18,6 +18,17 @@ typedef struct Dlist
 	struct element *last;
 } *t_dlist;
 
+/*------------------libft------------------*/
+
+int 	ft_atoi(char *);
+
+/*----------------utils_2.c----------------*/
+
+int		count_words(char const *str, char c);
+size_t	ft_strlen(const char *str);
+
+/*-----------------------------------------*/
+
 t_dlist	new_list(void);
 int		list_length(t_dlist list);//Nombres d elements
 int		list_get_last(t_dlist list);

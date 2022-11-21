@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/21 14:38:07 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/21 15:42:45 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,40 @@ void	push_swap(int *entry_list)
 	free_list(stack_b);
 }
 
-int main()
+int	*string_to_int_array(char *str)
 {
-	int nb_input[] = {5,2,8,9,0,3,1,4,7,6,-1};
-	//char	*input;
+	int 	nb_words;
+	int		j;
+	int		i;
+	char	*nombre;
+	int		*result;
+
+	j = 0;
+	i = 0;
+	nb_words = count_words(str, ' ');
+	result = malloc(nb_words * sizeof(int));
+	while (j < nb_words - 1)
+	{
+		nombre = malloc(100 * sizeof(char));
+		while (*str == ' ')
+			str++;
+		while (*str != ' ')
+			nombre[i++] = *str++;
+		i = 0;
+		result[j++] = ft_atoi(nombre);
+		free(nombre);
+	}
+	result[j] = -1;
+	return (result);
+}
+
+int main(int argc, const char *argv[])
+{
+	int		*nb_input;
 	//int		*int_input = malloc(100 *(sizeof(int)));
-	//int		i = 0;
+	int		i = 0;
 	printf("MAIN\n");
-	/*if (argc == 1)
+	if (argc == 1)
 	{
 		printf("Pas de liste fourni\n");
 		return (0);
@@ -90,24 +116,13 @@ int main()
 		printf("Trop d'arguments fournis\n");
 		return (0);
 	}
-	input = (char *)argv[1];
-	while (*input)
+	nb_input = string_to_int_array((char *)argv[1]);
+	while (nb_input[i] != -1)
 	{
-		if (*input != ' ')
-		{
-			int_input[i] = *input - '0';
-			i++;
-		}
-		input++;
-	}
-	int_input[i] = -1;
-	i = 0;
-	while (int_input[i] != -1)
-	{
-		printf("%d-", int_input[i]);
+		printf("[%d]\n", nb_input[i]);
 		i++;
-	}*/
-
+	}
+	printf("[%d]\n", nb_input[i]);
 	push_swap(nb_input);
 	return 0;
 }

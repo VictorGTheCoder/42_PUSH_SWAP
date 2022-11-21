@@ -1,8 +1,8 @@
-SRCS = utils.c sort_utils.c push_and_pop.c main.c
+SRCS = utils.c utils_2.c sort_utils.c push_and_pop.c main.c
 
 CC = gcc
 
-FLAGS = -Werror -Wall -Wextra -fsanitize=address
+FLAGS = -Werror -Wall -Wextra -fsanitize=address 
 
 OBJS = ${SRCS:.c=.o}
 
@@ -12,7 +12,7 @@ NAME = push_swap
 			${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			${CC} ${FLAGS} -o ${NAME} ${OBJS}
+			${CC} ${FLAGS} -o ${NAME} ${OBJS} -L. -lft
 
 all: ${NAME}
 
