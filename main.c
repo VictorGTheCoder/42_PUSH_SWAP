@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/21 15:42:45 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:36:06 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,56 +48,14 @@ void	sort(t_dlist stack_a, t_dlist stack_b)
 
 void	push_swap(int *entry_list)
 {
-	t_dlist stack_a = new_list();
-	t_dlist stack_b = new_list();
+	t_node	*head = NULL;
 
 	while (*entry_list != -1)
 	{
-		stack_a = push_back(stack_a, *entry_list);
+		push_front(&head, *entry_list);
 		entry_list++;
 	}
-	stack_b = push_back(stack_b, 0);
-	print_list(stack_a);
-	print_list(stack_b);
-	printf("<------------------------------------------------------------->\n");
-	
-	stack_b = pop_front(stack_b);
-	if (stack_b)
-		ft_switch(&stack_b);
-	//ss(stack_a, stack_b);
-
-	print_list(stack_a);
-	print_list(stack_b);
-
-	free_list(stack_a);
-	free_list(stack_b);
-}
-
-int	*string_to_int_array(char *str)
-{
-	int 	nb_words;
-	int		j;
-	int		i;
-	char	*nombre;
-	int		*result;
-
-	j = 0;
-	i = 0;
-	nb_words = count_words(str, ' ');
-	result = malloc(nb_words * sizeof(int));
-	while (j < nb_words - 1)
-	{
-		nombre = malloc(100 * sizeof(char));
-		while (*str == ' ')
-			str++;
-		while (*str != ' ')
-			nombre[i++] = *str++;
-		i = 0;
-		result[j++] = ft_atoi(nombre);
-		free(nombre);
-	}
-	result[j] = -1;
-	return (result);
+	print_list(head);
 }
 
 int main(int argc, const char *argv[])
@@ -117,12 +75,6 @@ int main(int argc, const char *argv[])
 		return (0);
 	}
 	nb_input = string_to_int_array((char *)argv[1]);
-	while (nb_input[i] != -1)
-	{
-		printf("[%d]\n", nb_input[i]);
-		i++;
-	}
-	printf("[%d]\n", nb_input[i]);
 	push_swap(nb_input);
 	return 0;
 }

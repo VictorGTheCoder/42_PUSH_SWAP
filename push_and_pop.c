@@ -6,119 +6,119 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:50 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/21 14:21:15 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:23:06 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_dlist push_front(t_dlist list, int x)
+void push_front(t_node **top_node, int x)
 {
-	t_node *node;
+	t_node *new_n = NULL;
 
-	node = malloc(sizeof(*node));
-	if (!node)
-		exit(EXIT_FAILURE);
-	node->value = x;
-	node->next = NULL;
-	node->prv = NULL;
-	if (!list)
+	if (*top_node == NULL)
 	{
-		list = malloc(sizeof(*list));
-		if (!list)
+		*top_node = malloc(sizeof(**top_node));
+		if (!(*top_node))
+		{
+			printf("ERROR MALLOC\n");
 			exit(EXIT_FAILURE);
-		list->first = node;
-		list->last = node;
-		list->length = 0;
+		}
+		(*top_node)->value = x;
+		(*top_node)->next = NULL;
+		(*top_node)->prv = NULL;
 	}
 	else
 	{
-		list->first->prv = node;
-		node->next = list->first;
-		list->first = node;
+		new_n = malloc(sizeof(*new_n));
+		if (!new_n)
+		{
+			printf("ERROR MALLOC\n");
+			exit(EXIT_FAILURE);
+		}
+		new_n->value = x;
+		new_n->prv = NULL;
+		new_n->next = (*top_node);
+		(*top_node)->prv = new_n;
+		*top_node = new_n;
 	}
-	list->length++;
-	return (list);
 }
 
-t_dlist push_back(t_dlist list, int x)
+void push_back(t_node **top_node, int x)
 {
-	t_node *node;
+	t_node *new_n = NULL;
+	t_node *temp; //lastcurrentnode
 
-	node = malloc(sizeof(*node));
-	if (!node)
-		exit(EXIT_FAILURE);
-	node->value = x;
-	node->next = NULL;
-	node->prv = NULL;
-	if (!list)
+	
+	if (*top_node == NULL)
 	{
-		list = malloc(sizeof(*list));
-		if (!list)
+		*top_node = malloc(sizeof(**top_node));
+		if (!(*top_node))
+		{
+			printf("ERROR MALLOC\n");
 			exit(EXIT_FAILURE);
-		list->length = 0;
-		list->first = node;
-		list->last = node;
+		}
+		(*top_node)->value = x;
+		(*top_node)->next = NULL;
+		(*top_node)->prv = NULL;
 	}
 	else
 	{
-		list->last->next = node;
-		node->prv = list->last;
-		list->last = node;
+		temp = *top_node;
+		new_n = malloc(sizeof(*new_n));
+		if (!new_n)
+		{
+			printf("ERROR MALLOC\n");
+			exit(EXIT_FAILURE);
+		}
+		while (temp->next != NULL)
+			temp = temp->next;
+		new_n->value = x;
+		new_n->prv = temp;
+		new_n->next = NULL;
+		temp->next = new_n;
 	}
-
-	list->length++;
-	return (list);
 }
 
-t_dlist	pop_front(t_dlist list)
+void	pop_front(t_node **top_node)
 {
-	t_node *temp;
+	t_node *node_to_free;
 
-	if (!list)
+	if (!(*top_node))
+		return ;
+	if (list_length(*top_node) == 1)
 	{
-		printf("LISTE VIDE\n");
-		return NULL;
+		free(*top_node);
+		*top_node = NULL;
 	}
-	if (list->first == list->last)
+	else
 	{
-		free(list);
-		list = NULL;
-		return (NULL);
+	node_to_free = *top_node;
+	*top_node = (*top_node)->next;
+	(*top_node)->prv = NULL;
+	free(node_to_free);
+	node_to_free = NULL;
 	}
-	temp = list->first;
-	list->first = list->first->next;
-	list->first->prv = NULL;
-	temp->next = NULL;
-	temp->prv = NULL;
-	free(temp);
-	temp = NULL;
-	list->length--;
-	return (list);
 }
 
-t_dlist	pop_back(t_dlist list)
+void	pop_back(t_node **top_node)
 {
-	t_node *temp;
+	t_node *node_to_free;
 
-	if (!list)
+	if (!(*top_node))
+		return ;
+	if (list_length(*top_node) == 1)
 	{
-		printf("LISTE VIDE\n");
-		return NULL;
+		free(*top_node);
+		*top_node = NULL;
 	}
-	if (list->first == list->last)
+	else
 	{
-		free(list);
-		list = NULL;
-		return (NULL);
+	node_to_free = *top_node;
+	while (node_to_free->next)
+		node_to_free = node_to_free->next;
+	node_to_free->prv->next = NULL;
+	free(node_to_free);
+	node_to_free = NULL;
 	}
-	temp = list->last;
-	list->last = list->last->prv;
-	list->last->next = NULL;
-	temp->next = NULL;
-	temp->prv = NULL;
-	free(temp);
-	temp = NULL;
-	list->length--;
-	return (list);
 }

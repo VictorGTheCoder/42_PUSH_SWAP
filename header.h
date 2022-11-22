@@ -4,12 +4,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct element
+typedef struct node
 {
-	int value;
-	struct element *prv;
-	struct element *next;	
-} t_node;
+	int	value;
+	struct node *next;
+	struct node *prv;
+}t_node;
 
 typedef struct Dlist
 {
@@ -26,22 +26,22 @@ int 	ft_atoi(char *);
 
 int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
+int		*string_to_int_array(char *str);
 
 /*-----------------------------------------*/
 
-t_dlist	new_list(void);
-int		list_length(t_dlist list);//Nombres d elements
+int		list_length(t_node *node);
 int		list_get_last(t_dlist list);
 int		list_get_first(t_dlist list);
-void	print_list(t_dlist list);
+void 	printList(t_node *node);
 void	free_list(t_dlist list);
 
 /*-----------------------------------------*/
 
-t_dlist push_front(t_dlist list, int x);
-t_dlist push_back(t_dlist list, int x);
-t_dlist pop_front(t_dlist list);
-t_dlist	pop_back(t_dlist list);
+void 	push_front(t_node **top_node, int x);
+void 	push_back(t_node **top_node, int x);
+void	pop_front(t_node **top_node);
+void	pop_back(t_node **top_node);
  
  /*----------------------------------------*/
 
