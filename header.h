@@ -9,7 +9,7 @@ typedef struct node
 	int	value;
 	struct node *next;
 	struct node *prv;
-}t_node, *t_list;
+}t_node;
 
 typedef struct Dlist
 {
@@ -20,7 +20,7 @@ typedef struct Dlist
 
 /*------------------libft------------------*/
 
-int 	ft_atoi(char *);
+int 	ft_atoi(const char *);
 
 /*----------------utils_2.c----------------*/
 
@@ -31,27 +31,28 @@ int		*string_to_int_array(char *str);
 /*-----------------------------------------*/
 
 int		list_length(t_node *node);
-int		list_get_last(t_dlist list);
+int		last_node_value(t_node *head);
+int		first_node_value(t_node *head);
 int		list_get_first(t_dlist list);
 void 	printList(t_node *node);
 void	free_list(t_dlist list);
 
 /*-----------------------------------------*/
 
-void 	push_front(t_node ***top_node, int x);
-void 	push_back(t_node ***top_node, int x);
-void	pop_front(t_node ***top_node);
-void	pop_back(t_node ***top_node);
+void 	push_front(t_node **top_node, int x);
+void 	push_back(t_node **top_node, int x);
+void	pop_front(t_node **top_node);
+void	pop_back(t_node **top_node);
  
  /*----------------------------------------*/
 
 void	ft_switch(t_node **head);
-void	push(t_node *head1, t_node *head2);
-void	rotate(t_node *head);
-void	reverse_rotate(t_node *head);
+void	push(t_node **head1, t_node **head2);
+void	rotate(t_node **head);
+void	reverse_rotate(t_node **head);
 
-void	ss(t_node *head1, t_node *head2);
-void	rr(t_node *head1, t_node *head2);
-void	rrr(t_node *head1, t_node *head2);
+void	ss(t_node **head1, t_node **head2);
+void	rr(t_node **head1, t_node **head2);
+void	rrr(t_node **head1, t_node **head2);
 
 #endif

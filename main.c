@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 11:25:30 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:40:11 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,65 @@ void	sort(t_dlist stack_a, t_dlist stack_b)
 	}*/
 }
 
+char test(char c)
+{
+	printf("%p\n", &c);
+	return (c);
+}
+
 void	push_swap(int *entry_list)
 {
-	t_node	*head = NULL;
-
+	t_node	*head_a = NULL;
+	t_node	*head_b = NULL;
+	t_node	*temp;
 	while (*entry_list != -1)
 	{
-		push_back(((t_list)&head), *entry_list);
+		push_back((&head_a), *entry_list);
 		entry_list++;
 	}
-	printList(head);
+
+	push_front(&head_b, 76);
+	push_front(&head_b, 12);
+	push_front(&head_b, 73);
+	push_front(&head_b, 74);
+	push_front(&head_b, 75);
+
+	printf("HEAD A");
+	printList(head_a);
+	printf("HEAD B");
+	printList(head_b);
 	printf("<---------------------------------------->\n");
-	ft_switch(&head);
-	printList(head);
+	ss(&head_a, &head_b);
+	printf("HEAD A");
+	printList(head_a);
+	printf("HEAD B");
+	printList(head_b);
+	printf("<---------------------------------------->\n");
+	//rr(&head_a, &head_b);
+	rrr(&head_a, &head_b);
+	//ft_switch(head_a);
+	//ft_switch(head_a);
+	//pop_front(&head_a);
+	//pop_front(&head_a);
+	//push(head_a, head_b);
+	//pop_front(&head_a);
+	//push_front(&head_b, 7);
+	temp = head_a;
+	//printf("[temp] %p\n", &temp);
+	//printf("[head_a] %p\n", &head_a);
+	//rotate(&head_a);
+	//push(&head_a, &head_b);
+	printf("HEAD A");
+	printList(head_a);
+	printf("HEAD B");
+	printList(head_b);
 }
 
 int main(int argc, const char *argv[])
 {
 	int		*nb_input;
-	//int		*int_input = malloc(100 *(sizeof(int)));
 	int		i = 0;
-	printf("MAIN\n");
+
 	if (argc == 1)
 	{
 		printf("Pas de liste fourni\n");

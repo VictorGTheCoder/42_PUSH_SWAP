@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/22 10:28:56 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:47:11 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,52 @@ int	*string_to_int_array(char *str)
 	}
 	result[j] = -1;
 	return (result);
+}
+
+static int	ft_signe(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while ((!(str[i] >= '0' && str[i] <= '9')) && str[i] != '-'
+		&& str[i] != '+')
+	{
+		if (str[i] == '\0')
+			return (0);
+		i++;
+	}
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i + 1] <= '9' && str[i + 1] >= '0')
+		{
+			if (str[i] == '-')
+				return (-1);
+			return (1);
+		}
+		return (0);
+	}
+	return (1);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	number;
+	int	i;
+
+	i = 0;
+	number = 0;
+	while (!(str[i] >= '0' && str[i] <= '9') && str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'
+			&& str[i] != '\f' && str[i] != '\v' && str[i] != '\r'
+			&& str[i] != '+' && str[i] != '-')
+			return (0);
+		i++;
+	}
+	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	{
+		number = number * 10 + str[i] - '0';
+		i++;
+	}
+	return (number * ft_signe(str));
 }
