@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 10:36:06 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:25:30 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ void	push_swap(int *entry_list)
 
 	while (*entry_list != -1)
 	{
-		push_front(&head, *entry_list);
+		push_back(((t_list)&head), *entry_list);
 		entry_list++;
 	}
-	print_list(head);
+	printList(head);
+	printf("<---------------------------------------->\n");
+	ft_switch(&head);
+	printList(head);
 }
 
 int main(int argc, const char *argv[])

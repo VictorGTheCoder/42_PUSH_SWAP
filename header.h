@@ -9,7 +9,7 @@ typedef struct node
 	int	value;
 	struct node *next;
 	struct node *prv;
-}t_node;
+}t_node, *t_list;
 
 typedef struct Dlist
 {
@@ -38,20 +38,20 @@ void	free_list(t_dlist list);
 
 /*-----------------------------------------*/
 
-void 	push_front(t_node **top_node, int x);
-void 	push_back(t_node **top_node, int x);
-void	pop_front(t_node **top_node);
-void	pop_back(t_node **top_node);
+void 	push_front(t_node ***top_node, int x);
+void 	push_back(t_node ***top_node, int x);
+void	pop_front(t_node ***top_node);
+void	pop_back(t_node ***top_node);
  
  /*----------------------------------------*/
 
-void	ft_switch(t_dlist *stack);
-void	push(t_dlist *stack_1, t_dlist *stack_2);
-void	rotate(t_dlist *stack);
-void	reverse_rotate(t_dlist *stack);
+void	ft_switch(t_node **head);
+void	push(t_node *head1, t_node *head2);
+void	rotate(t_node *head);
+void	reverse_rotate(t_node *head);
 
-void	ss(t_dlist stack_1, t_dlist stack_2);
-void	rrr(t_dlist stack1, t_dlist stack2);
-void	rr(t_dlist stack1, t_dlist stack2);
+void	ss(t_node *head1, t_node *head2);
+void	rr(t_node *head1, t_node *head2);
+void	rrr(t_node *head1, t_node *head2);
 
 #endif
