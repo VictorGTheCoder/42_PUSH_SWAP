@@ -6,17 +6,17 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 21:40:11 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/22 23:10:48 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	sort(t_dlist stack_a, t_dlist stack_b)
+void	sort(t_node *stack_a, t_node *stack_b)
 {
 	(void) stack_a;
 	(void) stack_b;
-	/*printf("SORT\n");
+	printf("SORT\n");
 	t_node *element;
 	int		i;
 	int		action;
@@ -25,55 +25,45 @@ void	sort(t_dlist stack_a, t_dlist stack_b)
 	i = 0;
 	while (list_length(stack_a) != 0)
 	{	
-		printf("Nombre d'action %d\n", action);
+		printf("Actions %d\n", action);
 
-		element = stack_a->first;
+		element = stack_a;
 		if (element->value == i)
 		{
-			push(stack_b, stack_a);
-			print_list(stack_a);
-			print_list(stack_b);
-			printf("-----------------------\n");
+			push(&stack_a, &stack_b);
 			i++;
 			action++;	
 		}
 		else
 		{
 			action++;
-			rotate(stack_a);
+			rotate(&stack_a);
 		}
-		
-	}*/
-}
-
-char test(char c)
-{
-	printf("%p\n", &c);
-	return (c);
+		printf("HEAD A : ");
+		printList(stack_a);
+		printf("HEAD B : ");
+		printList(stack_b);
+		printf("<----------------------------------------------------->\n");
+	}
 }
 
 void	push_swap(int *entry_list)
 {
 	t_node	*head_a = NULL;
 	t_node	*head_b = NULL;
-	t_node	*temp;
+
 	while (*entry_list != -1)
 	{
 		push_back((&head_a), *entry_list);
 		entry_list++;
 	}
 
-	push_front(&head_b, 76);
-	push_front(&head_b, 12);
-	push_front(&head_b, 73);
-	push_front(&head_b, 74);
-	push_front(&head_b, 75);
-
 	printf("HEAD A");
 	printList(head_a);
 	printf("HEAD B");
 	printList(head_b);
-	printf("<---------------------------------------->\n");
+	sort(head_a, head_b);
+	/*printf("<---------------------------------------->\n");
 	ss(&head_a, &head_b);
 	printf("HEAD A");
 	printList(head_a);
@@ -81,23 +71,12 @@ void	push_swap(int *entry_list)
 	printList(head_b);
 	printf("<---------------------------------------->\n");
 	//rr(&head_a, &head_b);
+	push(&head_a, &head_b);
 	rrr(&head_a, &head_b);
-	//ft_switch(head_a);
-	//ft_switch(head_a);
-	//pop_front(&head_a);
-	//pop_front(&head_a);
-	//push(head_a, head_b);
-	//pop_front(&head_a);
-	//push_front(&head_b, 7);
-	temp = head_a;
-	//printf("[temp] %p\n", &temp);
-	//printf("[head_a] %p\n", &head_a);
-	//rotate(&head_a);
-	//push(&head_a, &head_b);
 	printf("HEAD A");
 	printList(head_a);
 	printf("HEAD B");
-	printList(head_b);
+	printList(head_b);*/
 }
 
 int main(int argc, const char *argv[])

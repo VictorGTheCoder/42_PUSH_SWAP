@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 21:35:02 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/22 23:02:58 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void push(t_node **head1, t_node **head2)
 {
 	int	t1;
 
+	if (list_length(*head1) == 0)
+		return ;
 	t1 = (*head1)->value;
 	pop_front(&(*head1));
 	push_front(&(*head2), t1);
@@ -39,12 +41,16 @@ void push(t_node **head1, t_node **head2)
 void rotate(t_node **head)
 {
 	//printf("[ROTATE] %p\n", &(*head));
+	if (*head == NULL)
+		return ;
 	push_back(&(*head), (*head)->value);
 	pop_front(&(*head));
 }
 
 void reverse_rotate(t_node **head)
 {
+	if (*head == NULL)
+		return ;
 	push_front(&(*head), last_node_value(*head));
 	pop_back(&(*head));
 }

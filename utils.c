@@ -6,7 +6,7 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:08:01 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 21:37:19 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/22 22:28:17 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	last_node_value(t_node *head)
 	t_node *temp;
 
 	temp = head;
-	while (temp->next)
-		temp = temp->next;
-	return (temp->value);
+	while (head->next)
+		head = head->next;
+	return (head->value);
 }
 
 int	first_node_value(t_node *head)
