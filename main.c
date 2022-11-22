@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 11:25:30 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:31:51 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int main(int argc, const char *argv[])
 		printf("Pas de liste fourni\n");
 		return (0);
 	}
+	
 	if (argc > 2)
 	{
 		printf("Trop d'arguments fournis\n");
