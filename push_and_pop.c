@@ -6,13 +6,13 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:50 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/22 21:15:45 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/22 23:51:29 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void push_front(t_node **top_node, int x)
+void	push_front(t_node **top_node, int x)
 {
 	t_node *new_n = NULL;
 
@@ -44,7 +44,7 @@ void push_front(t_node **top_node, int x)
 	}
 }
 
-void push_back(t_node **top_node, int x)
+void	push_back(t_node **top_node, int x)
 {
 	t_node *new_n = NULL;
 	t_node *temp; //lastcurrentnode
@@ -123,4 +123,15 @@ void	pop_back(t_node **top_node)
 	free(node_to_free);
 	node_to_free = NULL;
 	}
+}
+
+void	combine_list(t_node **list1, t_node **list2)
+{
+	t_node *temp;
+
+	temp = *list1;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = *list2;
+	(*list2)->prv = temp;
 }

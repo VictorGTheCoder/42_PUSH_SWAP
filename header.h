@@ -3,6 +3,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct node
 {
@@ -43,6 +44,7 @@ void 	push_front(t_node **top_node, int x);
 void 	push_back(t_node **top_node, int x);
 void	pop_front(t_node **top_node);
 void	pop_back(t_node **top_node);
+void	combine_list(t_node **list1, t_node **list2);
  
  /*----------------------------------------*/
 
