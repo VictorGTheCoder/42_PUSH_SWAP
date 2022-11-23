@@ -16,36 +16,80 @@ t_node	*quick_sort(t_node *stack)
 {
 	int		pivot;
 	t_node	*stack_b = NULL;
-	t_node	*temp;
-
-	if (list_length(stack) <= 1)
+	int		list_size;
+	list_size = list_length(stack);
+	if (list_size <= 1)
 		return (stack);
-	temp = malloc(sizeof(*stack));
 	pivot = stack->value;
-	temp = stack;
-	while (stack->next)
+
+	while (list_size--)
 	{
-		printf("TEMP VALUE %d\n", temp->value);
-		if (stack->value < pivot)
+		if (stack->value >= pivot)
 		{
 			push(&stack, &stack_b);
 		}
-		else
-			stack = stack->next;
+		rotate(&stack);
 		printf("PIVOT : %d\n", pivot);
 		printf("HEAD A : ");
 		printList(stack);
 		printf("HEAD B : ");
 		printList(stack_b);
 		printf("<----------------------------------------------------->\n");
-		usleep(500000);
+		usleep(100000);
 	}
+	printList(stack);
 	combine_list(&stack, &stack_b);
 	printf("COMBINE");
 	printList(stack);
-	sleep(1);
+	usleep(10000);
 	return (quick_sort(stack));
 }
+
+/*t_node * parition(t_node * first, t_node * last)
+{
+    // Get first node of given linked list
+    t_node * pivot = first;
+    t_node * front = first;
+    int temp = 0;
+    while (front != NULL && front != last) {
+        if (front->value < last->value) {
+            pivot = first;
+ 
+            // Swapping  node values
+            temp = first->value;
+            first->value = front->value;
+            front->value = temp;
+ 
+            // Visiting the next node
+            first = first->next;
+        }
+ 
+        // Visiting the next node
+        front = front->next;
+    }
+ 
+    // Change last node value to current node
+    temp = first->value;
+    first->value = last->value;
+    last->value = temp;
+    return pivot;
+}
+
+void quick_sort(t_node *first, t_node *last)
+{
+    if (first == last) {
+        return;
+    }
+    t_node *pivot = parition(first, last);
+ 
+    if (pivot != NULL && pivot->next != NULL) {
+        quick_sort(pivot->next, last);
+    }
+ 
+    if (pivot != NULL && first != pivot) {
+        quick_sort(first, pivot);
+    }
+}*/
 
 void	sort(t_node *stack_a, t_node *stack_b)
 {
@@ -97,7 +141,10 @@ void	push_swap(int *entry_list)
 	printList(head_a);
 	printf("HEAD B");
 	printList(head_b);
+	//quick_sort(head_a, get_last_node(head_a));
 	quick_sort(head_a);
+	printList(head_a);
+	printList(head_b);
 	/*printf("<---------------------------------------->\n");
 	ss(&head_a, &head_b);
 	printf("HEAD A");

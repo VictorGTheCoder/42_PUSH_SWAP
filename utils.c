@@ -17,14 +17,22 @@ int	last_node_value(t_node *head)
 	t_node *temp;
 
 	temp = head;
-	while (head->next)
-		head = head->next;
-	return (head->value);
+	while (temp->next)
+		temp = temp->next;
+	return (temp->value);
 }
 
 int	first_node_value(t_node *head)
 {
 	return (head->value);
+}
+
+t_node *get_last_node(t_node *head)
+{
+	t_node *temp = head;
+	while (temp->next)
+		temp = temp->next;
+	return (temp);
 }
 
 int	list_length(t_node *node)

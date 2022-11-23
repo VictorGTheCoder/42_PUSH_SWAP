@@ -129,6 +129,8 @@ void	combine_list(t_node **list1, t_node **list2)
 {
 	t_node *temp;
 
+	if (*list1 == NULL || *list2 == NULL)
+		return ;
 	temp = *list1;
 	while (temp->next)
 		temp = temp->next;
