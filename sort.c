@@ -106,23 +106,25 @@ void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size)
 {
 	int		*sorted_array;
 	int		count_rb;
+	int		parition_size;
 
+	parition_size = size*3/10; 
 	sorted_array = string_to_int_array(entry_list);
 	quickSort(sorted_array, 0, size - 1);
 	printArray(sorted_array, size);
 	printList(*stack_a);
-	partitionning(&(*stack_a), &(*stack_b), sorted_array, 3);
+	partitionning(&(*stack_a), &(*stack_b), sorted_array, parition_size);
 	count_rb = 0;
 	while (size)
 	{
 		while ((*stack_b)->value != sorted_array[size - 1])
 		{
-			printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
+			//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 			rb(&(*stack_b));
 			count_rb++;
 			sleep(1);
 		}
-		printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
+		//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 		pa(&(*stack_a), &(*stack_b));
 		size--;
 		while (count_rb-- > 0)
@@ -135,21 +137,4 @@ void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size)
 		printf("Stack B : ");
 		printList(*stack_b);
 	}
-	
-	/*if (len == 3)
-	{
-		printf("n3_sort\n");
-		n3_sort(&(*stack_a), &(*stack_b));
-		return ;
-	}
-	if (len == 5 || len == 4)
-	{
-		printf("n5_sort\n");
-		n5_sort(&(*stack_a), &(*stack_b));
-		printf("StackA : ");
-		printList(*stack_a);
-		printf("StackB : ");
-		printList(*stack_b);
-		return ;
-	}*/
 }

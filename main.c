@@ -14,8 +14,8 @@
 
 void	string_to_int(char *entry_list)
 {
-	t_node	*head_a = NULL;
-	t_node	*head_b = NULL;
+	t_node	*stack_a = NULL;
+	t_node	*stack_b = NULL;
 	int		*nb_input;
 	int		size;
 
@@ -23,10 +23,20 @@ void	string_to_int(char *entry_list)
 	nb_input = string_to_int_array(entry_list);
 	while (*nb_input != -1)
 	{
-		push_back((&head_a), *nb_input);
+		push_back((&stack_a), *nb_input);
 		nb_input++;
 	}
-	process(&head_a, &head_b, entry_list, size);
+	if (size == 3)
+	{
+		n3_sort(&(stack_a), &(stack_b));
+		return ;
+	}
+	if (size <= 5)
+	{
+		n3_sort(&(stack_a), &(stack_b));
+		return ;
+	}
+	process(&stack_a, &stack_b, entry_list, size);
 }
 
 

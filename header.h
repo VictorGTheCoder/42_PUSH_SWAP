@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define var 0
 typedef struct node
 {
 	int	value;
