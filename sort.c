@@ -68,40 +68,75 @@ void	n5_sort(t_node **stack_a, t_node **stack_b)
 	}
 }
 
-void	my_sort(t_node **stack_a, t_node **stack_b)
+void	partitionning(t_node **stack_a, t_node **stack_b, int *sort_array, int p_size)
 {
-	int		list_size;
-	int		pivot;
-	t_node	*temp;
+	int	count;
+	int p_size_init;
 
-	list_size = list_length(*stack_a);
-	if (list_size == 0)
-		return ;
-	pivot = (*stack_a)->value;
-	while (list_size--)
+	p_size_init = p_size;
+	while ((*stack_a))
 	{
-		if ((*stack_a)->value > pivot)
+		count = 0;
+		while (count < p_size_init && (*stack_a))
 		{
-			pa(&(*stack_a), &(*stack_b));
+			if (is_value_in_n_first(sort_array, (*stack_a)->value, p_size))
+			{
+				printf("%d is in %d first elements of the array\n", (*stack_a)->value, p_size);
+				//printArray(sort_array, 10);
+				count++;
+				pb(&(*stack_a), &(*stack_b));
+			}
+			else
+			{
+				printf("%d is NOT in %d first elements of the array\n", (*stack_a)->value, p_size);
+				printArray(sort_array, 10);
+				ra(&(*stack_a));
+			}
+			printf("Stack A : ");
+			printList(*stack_a);
+			printf("Stack B : ");
+			printList(*stack_b);
+			
 		}
-		else
-		{
-			rra(&(*stack_a));
-		}
+		p_size += p_size_init;
 	}
 }
 
-void	sort(t_node **stack_a, t_node **stack_b)
+void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size)
 {
-	int	max;
-	int min;
-	int	len;
-	int	pivot;
+	int		*sorted_array;
+	int		count_rb;
 
-	max = found_max_in_list(*stack_a);
-	min = found_min_in_list(*stack_a);
-	len = list_length(*stack_a);
-	if (len == 3)
+	sorted_array = string_to_int_array(entry_list);
+	quickSort(sorted_array, 0, size - 1);
+	printArray(sorted_array, size);
+	printList(*stack_a);
+	partitionning(&(*stack_a), &(*stack_b), sorted_array, 3);
+	count_rb = 0;
+	while (size)
+	{
+		while ((*stack_b)->value != sorted_array[size - 1])
+		{
+			printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
+			rb(&(*stack_b));
+			count_rb++;
+			sleep(1);
+		}
+		printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
+		pa(&(*stack_a), &(*stack_b));
+		size--;
+		while (count_rb-- > 0)
+		{
+			rrb(&(*stack_b));
+			sleep(1);
+		}
+		printf("Stack A : ");
+		printList(*stack_a);
+		printf("Stack B : ");
+		printList(*stack_b);
+	}
+	
+	/*if (len == 3)
 	{
 		printf("n3_sort\n");
 		n3_sort(&(*stack_a), &(*stack_b));
@@ -116,6 +151,5 @@ void	sort(t_node **stack_a, t_node **stack_b)
 		printf("StackB : ");
 		printList(*stack_b);
 		return ;
-	}
-	pivot = (max - min)/len + min;
+	}*/
 }

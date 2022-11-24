@@ -12,38 +12,33 @@
 
 #include "header.h"
 
-void	push_swap(int *entry_list)
+void	string_to_int(char *entry_list)
 {
 	t_node	*head_a = NULL;
 	t_node	*head_b = NULL;
+	int		*nb_input;
+	int		size;
 
-	while (*entry_list != -1)
+	size = count_words(entry_list, ' ');
+	nb_input = string_to_int_array(entry_list);
+	while (*nb_input != -1)
 	{
-		push_back((&head_a), *entry_list);
-		entry_list++;
+		push_back((&head_a), *nb_input);
+		nb_input++;
 	}
-	sort(&head_a, &head_b);
+	process(&head_a, &head_b, entry_list, size);
 }
 
 
 int main(int argc, const char *argv[])
 {
-	int		*nb_input;
 	int		i = 0;
 
 	if (argc == 1)
-	{
 		printf("Pas de liste fourni\n");
-		return (0);
-	}
-	if (argc > 2)
-	{
+	else if (argc > 2)
 		printf("Trop d'arguments fournis\n");
-		return (0);
-	}
-	nb_input = string_to_int_array((char *)argv[1]);
-	/*while (*nb_input != -1)
-		printf("%d, ", *nb_input++);*/
-	push_swap(nb_input);
+	else
+		string_to_int((char *)argv[1]);
 	return 0;
 }

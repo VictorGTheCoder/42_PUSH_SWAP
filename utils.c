@@ -82,6 +82,11 @@ int	list_length(t_node *node)
 
 void printList(t_node *node)
 {
+	if (node == NULL)
+	{
+		printf("Liste vide\n");
+		return ;
+	}
     while (node != NULL)
     {
         printf("[%d]",node->value);

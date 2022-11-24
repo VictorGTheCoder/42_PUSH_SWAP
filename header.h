@@ -19,6 +19,10 @@ typedef struct Dlist
 	struct element *last;
 } *t_dlist;
 
+void quickSort(int array[], int low, int high);
+void printArray(int array[], int size);
+
+
 /*------------------libft------------------*/
 
 int 	ft_atoi(const char *);
@@ -28,12 +32,13 @@ int 	ft_atoi(const char *);
 int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
 int		*string_to_int_array(char *str);
+int	is_value_in_n_first(int *array,int value, int n);
 
 /*------------------Sort------------------*/
 
 void	n3_sort(t_node **stack_a, t_node **stack_b);
 void	n5_sort(t_node **stack_a, t_node **stack_b);
-void	sort(t_node **stack_a, t_node **stack_b);
+void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size);
 
 /*-----------------------------------------*/
 

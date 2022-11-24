@@ -1,4 +1,4 @@
-SRCS = utils.c utils_2.c sort_utils.c push_and_pop.c main.c sort.c
+SRCS = utils.c utils_2.c sort_utils.c push_and_pop.c main.c sort.c quick_sort.c
 
 CC = gcc
 

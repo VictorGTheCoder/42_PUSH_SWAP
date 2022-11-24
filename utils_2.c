@@ -117,3 +117,17 @@ int	ft_atoi(const char *str)
 	}
 	return (number * ft_signe(str));
 }
+
+int	is_value_in_n_first(int *array,int value, int n)
+{
+	int	i;
+
+	i = 0;
+	while (n--)
+	{
+		if (array[i] == value)
+			return (1);
+		i++;
+	}
+	return (0);
+}
