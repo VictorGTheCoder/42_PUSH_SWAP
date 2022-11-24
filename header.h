@@ -38,6 +38,8 @@ t_node	*get_last_node(t_node *head);
 int		list_get_first(t_dlist list);
 void 	printList(t_node *node);
 void	free_list(t_dlist list);
+int		found_max_in_list(t_node *list);
+int		found_min_in_list(t_node *list);
 
 /*-----------------------------------------*/
 
@@ -49,10 +51,14 @@ void	combine_list(t_node **list1, t_node **list2);
  
  /*----------------------------------------*/
 
-void	ft_switch(t_node **head);
-void	push(t_node **head1, t_node **head2);
-void	rotate(t_node **head);
-void	reverse_rotate(t_node **head);
+void	sa(t_node **head);
+void	sb(t_node **head);
+void	pa(t_node **head1, t_node **head2);
+void	pb(t_node **head1, t_node **head2);
+void	ra(t_node **head);
+void	rb(t_node **head);
+void	rra(t_node **head);
+void	rrb(t_node **head);
 
 void	ss(t_node **head1, t_node **head2);
 void	rr(t_node **head1, t_node **head2);

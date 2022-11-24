@@ -6,124 +6,125 @@
 /*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/23 11:49:46 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/24 00:00:01 by victorgiord      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_node	*quick_sort(t_node *stack)
+void	n3_sort(t_node **stack_a, t_node **stack_b)
 {
-	int		pivot;
-	t_node	*stack_b = NULL;
-	int		list_size;
-	list_size = list_length(stack);
-	if (list_size <= 1)
-		return (stack);
-	pivot = stack->value;
-
-	while (list_size--)
+	if ((*stack_a)->value > (*stack_a)->next->value)//3 1 2 || 2 1 3 || 3 2 1
 	{
-		if (stack->value >= pivot)
+		if((*stack_a)->value < (*stack_a)->next->next->value)//2 1 3
+			sa(&(*stack_a));
+		else if ((*stack_a)->next->value > (*stack_a)->next->next->value) //3 2 1
 		{
-			push(&stack, &stack_b);
+			sa(&(*stack_a));
+			rra(&(*stack_a));
 		}
-		rotate(&stack);
-		printf("PIVOT : %d\n", pivot);
-		printf("HEAD A : ");
-		printList(stack);
-		printf("HEAD B : ");
-		printList(stack_b);
-		printf("<----------------------------------------------------->\n");
-		usleep(100000);
+		else //3 1 2
+			ra(&(*stack_a));
 	}
-	printList(stack);
-	combine_list(&stack, &stack_b);
-	printf("COMBINE");
-	printList(stack);
-	usleep(10000);
-	return (quick_sort(stack));
-}
-
-/*t_node * parition(t_node * first, t_node * last)
-{
-    // Get first node of given linked list
-    t_node * pivot = first;
-    t_node * front = first;
-    int temp = 0;
-    while (front != NULL && front != last) {
-        if (front->value < last->value) {
-            pivot = first;
- 
-            // Swapping  node values
-            temp = first->value;
-            first->value = front->value;
-            front->value = temp;
- 
-            // Visiting the next node
-            first = first->next;
-        }
- 
-        // Visiting the next node
-        front = front->next;
-    }
- 
-    // Change last node value to current node
-    temp = first->value;
-    first->value = last->value;
-    last->value = temp;
-    return pivot;
-}
-
-void quick_sort(t_node *first, t_node *last)
-{
-    if (first == last) {
-        return;
-    }
-    t_node *pivot = parition(first, last);
- 
-    if (pivot != NULL && pivot->next != NULL) {
-        quick_sort(pivot->next, last);
-    }
- 
-    if (pivot != NULL && first != pivot) {
-        quick_sort(first, pivot);
-    }
-}*/
-
-void	sort(t_node *stack_a, t_node *stack_b)
-{
-	(void) stack_a;
-	(void) stack_b;
-	printf("SORT\n");
-	t_node *element;
-	int		i;
-	int		action;
-
-	action = 0;
-	i = 0;
-	while (list_length(stack_a) != 0)
-	{	
-		printf("Actions %d\n", action);
-
-		element = stack_a;
-		if (element->value == i)
+	else//1 2 3 || 1 3 2 || 2 3 1 || 
+	{
+		if((*stack_a)->value > (*stack_a)->next->next->value)//2 3 1
+			rra(&(*stack_a));
+		else if ((*stack_a)->next->value > (*stack_a)->next->next->value) // 1 3 2
 		{
-			push(&stack_a, &stack_b);
-			i++;
-			action++;	
+			sa(&(*stack_a));
+			ra(&(*stack_a));
+		}		//else 1 2 3 nth to do
+	}
+}
+
+void	n5_sort(t_node **stack_a, t_node **stack_b)
+{
+	int		i;
+
+	pb(&(*stack_a), (&(*stack_b)));
+	if (list_length(*stack_a) == 4)
+		pb(&(*stack_a), (&(*stack_b)));
+	n3_sort(&(*stack_a), &(*stack_b));
+	if (list_length(*stack_a) == 5)
+		if ((*stack_b)->value < (*stack_b)->next->value)
+			sb(&(*stack_b));
+	while(list_length(*stack_b))
+	{
+		i = 0;
+		if ((*stack_b)->value < (*stack_a)->value)//PLUS PETIT
+			pa(&(*stack_a), (&(*stack_b)));
+		else if ((*stack_b)->value > last_node_value(*stack_a))
+		{
+			pa(&(*stack_a), (&(*stack_b)));
+			ra(&(*stack_a));
 		}
 		else
 		{
-			action++;
-			rotate(&stack_a);
+			while ((*stack_a)->value > (*stack_b)->value || (*stack_a)->next->value < (*stack_b)->value)
+			{
+				ra(&(*stack_a));
+				i++;
+			}
+			ra(&(*stack_a));
+			pa(&(*stack_a), (&(*stack_b)));
+			while (i-- + 1)
+				rra(&(*stack_a));
 		}
-		printf("HEAD A : ");
-		printList(stack_a);
-		printf("HEAD B : ");
-		printList(stack_b);
-		printf("<----------------------------------------------------->\n");
 	}
+}
+
+void	my_sort(t_node **stack_a, t_node **stack_b)
+{
+	int		list_size;
+	int		pivot;
+	t_node	*temp;
+
+	list_size = list_length(*stack_a);
+	if (list_size == 0)
+		return ;
+	pivot = (*stack_a)->value;
+	while (list_size--)
+	{
+		if ((*stack_a)->value > pivot)
+		{
+			pa(&(*stack_a), &(*stack_b));
+		}
+		else
+		{
+			rra(&(*stack_a));
+		}
+	}
+}
+
+void	sort(t_node **stack_a, t_node **stack_b)
+{
+	int	max;
+	int min;
+	int	len;
+	int	pivot;
+
+	max = found_max_in_list(*stack_a);
+	min = found_min_in_list(*stack_a);
+	len = list_length(*stack_a);
+	if (len == 3)
+	{
+		n3_sort(&(*stack_a), &(*stack_b));
+		return ;
+	}
+	if (len == 5 || len == 4)
+	{
+		printf("n5_sort\n");
+		n5_sort(&(*stack_a), &(*stack_b));
+		return ;
+	}
+	pivot = (max - min)/len + min;
+	my_sort(&(*stack_a), &(*stack_b));
+	printf("HEAD A");
+	printList(*stack_a);
+	printf("HEAD B");
+	printList(*stack_b);
+
 }
 
 void	push_swap(int *entry_list)
@@ -139,15 +140,15 @@ void	push_swap(int *entry_list)
 
 	printf("HEAD A");
 	printList(head_a);
-	printf("HEAD B");
+	printf("HEAD b");
 	printList(head_b);
+	printf("<---------------------------------------->\n");
 	//quick_sort(head_a, get_last_node(head_a));
-	quick_sort(head_a);
-	printList(head_a);
-	printList(head_b);
-	/*printf("<---------------------------------------->\n");
-	ss(&head_a, &head_b);
+	sort(&head_a, &head_b);
 	printf("HEAD A");
+	printList(head_a);
+	//ss(&head_a, &head_b);
+	/*printf("HEAD A");
 	printList(head_a);
 	printf("HEAD B");
 	printList(head_b);
