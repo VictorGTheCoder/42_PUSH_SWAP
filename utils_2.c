@@ -54,10 +54,10 @@ int	*string_to_int_array(char *str)
 	j = 0;
 	i = 0;
 	nb_words = count_words(str, ' ');
-	result = malloc(nb_words * sizeof(int));
-	while (j < nb_words - 1)
+	result = malloc((nb_words + 1) * sizeof(int));
+	while (j < nb_words)
 	{
-		nombre = malloc(100 * sizeof(char));
+		nombre = malloc(1000 * sizeof(char));
 		while (*str == ' ')
 			str++;
 		while (*str != ' ')

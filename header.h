@@ -29,6 +29,12 @@ int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
 int		*string_to_int_array(char *str);
 
+/*------------------Sort------------------*/
+
+void	n3_sort(t_node **stack_a, t_node **stack_b);
+void	n5_sort(t_node **stack_a, t_node **stack_b);
+void	sort(t_node **stack_a, t_node **stack_b);
+
 /*-----------------------------------------*/
 
 int		list_length(t_node *node);

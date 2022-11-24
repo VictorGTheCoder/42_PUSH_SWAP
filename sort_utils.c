@@ -113,4 +113,3 @@ void	rrr(t_node **head1, t_node **head2)
 	rra(&(*head1));
 	rrb(&(*head2));
 }
-
