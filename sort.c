@@ -7,12 +7,6 @@ void	n3_sort(t_node **stack_a, t_node **stack_b)
 		if((*stack_a)->value < (*stack_a)->next->next->value)//2 1 3
 			sa(&(*stack_a));
 		else if ((*stack_a)->next->value > (*stack_a)->next->next->value) // 3 2 1
-    //4 5 6 3 2 1
-    //5 4 6 3 2 1 sa
-    //4 6 3 2 1 5 ra
-    //6 4 3 2 1 5 sa
-    //5 6 4 3 2 1 rra
-    //6 5 4 3 2 1 sa
 		{
 			sa(&(*stack_a));
 			rra(&(*stack_a));
@@ -81,48 +75,52 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sort_array, int p_si
 		{
 			if (is_value_in_n_first(sort_array, (*stack_a)->value, p_size))
 			{
-				printf("%d is in %d first elements of the array\n", (*stack_a)->value, p_size);
+				//printf("%d is in %d first elements of the array\n", (*stack_a)->value, p_size);
 				//printArray(sort_array, 10);
 				count++;
 				pb(&(*stack_a), &(*stack_b));
 			}
 			else
 			{
-				printf("%d is NOT in %d first elements of the array\n", (*stack_a)->value, p_size);
-				printArray(sort_array, 10);
+				//printf("%d is NOT in %d first elements of the array", (*stack_a)->value, p_size);
+				//printArray(sort_array, 10);
 				ra(&(*stack_a));
 			}
-			printf("Stack A : ");
+			/*printf("Stack A : ");
 			printList(*stack_a);
 			printf("Stack B : ");
-			printList(*stack_b);
+			printList(*stack_b);*/
 			
 		}
 		p_size += p_size_init;
 	}
 }
 
-void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size)
+void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 {
-	int		*sorted_array;
 	int		count_rb;
-	int		parition_size;
+	int		partition_size;
 
-	parition_size = size*3/10; 
-	sorted_array = string_to_int_array(entry_list);
+	partition_size = size/20;
+	if (partition_size == 0)
+		partition_size = 1; 
 	quickSort(sorted_array, 0, size - 1);
-	printArray(sorted_array, size);
-	printList(*stack_a);
-	partitionning(&(*stack_a), &(*stack_b), sorted_array, parition_size);
-	count_rb = 0;
+	/*printArray(sorted_array, size);
+	printList(*stack_a);*/
+	partitionning(&(*stack_a), &(*stack_b), sorted_array, partition_size);
+	/*printf("=========End Partitionning==========\n");
+	printList(*stack_b);
+	printf("Partition Size : %d\n", partition_size);
+	printf("====================================\n");*/
 	while (size)
 	{
+		count_rb = 0;
 		while ((*stack_b)->value != sorted_array[size - 1])
 		{
 			//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 			rb(&(*stack_b));
 			count_rb++;
-			sleep(1);
+			//usleep(1000000);
 		}
 		//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 		pa(&(*stack_a), &(*stack_b));
@@ -130,11 +128,12 @@ void	process(t_node **stack_a, t_node **stack_b, char *entry_list, int size)
 		while (count_rb-- > 0)
 		{
 			rrb(&(*stack_b));
-			sleep(1);
+			//usleep(1000000);
 		}
-		printf("Stack A : ");
+		/*printf("Stack A : ");
 		printList(*stack_a);
 		printf("Stack B : ");
-		printList(*stack_b);
+		printList(*stack_b);*/
 	}
+	
 }
