@@ -37,7 +37,7 @@ int		is_value_in_n_first(int *array,int value, int n);
 
 /*------------------Sort------------------*/
 
-void	n3_sort(t_node **stack_a, t_node **stack_b);
+void	n3_sort(t_node **stack_a);
 void	n5_sort(t_node **stack_a, t_node **stack_b);
 void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size);
 
@@ -49,7 +49,7 @@ int		first_node_value(t_node *head);
 t_node	*get_last_node(t_node *head);
 int		list_get_first(t_dlist list);
 void 	printList(t_node *node);
-void	free_list(t_dlist list);
+void	free_list(t_node *node);
 int		found_max_in_list(t_node *list);
 int		found_min_in_list(t_node *list);
 

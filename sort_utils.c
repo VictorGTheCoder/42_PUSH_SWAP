@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/24 22:11:00 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/25 15:33:53 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-extern int action;
-
 void sa(t_node **head)
 {
 	int		temp;
 
-	action++;
 	if (list_length(*head) < 2)
 		return ;
 	printf("sa\n");
@@ -31,7 +28,6 @@ void sb(t_node **head)
 {
 	int		temp;
 
-	action++;
 	if (list_length(*head) < 2)
 		return ;
 	printf("sb\n");
@@ -44,7 +40,6 @@ void pb(t_node **head1, t_node **head2)
 {
 	int	t1;
 
-	action++;
 	if (list_length(*head1) == 0)
 		return ;
 	printf("pb\n");
@@ -60,7 +55,6 @@ void pa(t_node **head1, t_node **head2)
 	if (list_length(*head2) == 0)
 		return ;
 	printf("pa\n");
-	action++;
 	t1 = (*head2)->value;
 	pop_front(&(*head2));
 	push_front(&(*head1), t1);
@@ -78,7 +72,6 @@ void ra(t_node **head)
 void rb(t_node **head)
 {
 	printf("rb\n");
-	action++;
 	if (*head == NULL)
 		return ;
 	push_back(&(*head), (*head)->value);
@@ -90,7 +83,6 @@ void rra(t_node **head)
 	printf("rra\n");
 	if (*head == NULL)
 		return ;
-	action++;
 	push_front(&(*head), last_node_value(*head));
 	pop_back(&(*head));
 }
@@ -98,7 +90,6 @@ void rra(t_node **head)
 void rrb(t_node **head)
 {
 	printf("rrb\n");
-	action++;
 	if (*head == NULL)
 		return ;
 	push_front(&(*head), last_node_value(*head));

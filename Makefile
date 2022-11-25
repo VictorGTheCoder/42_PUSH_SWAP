@@ -9,10 +9,10 @@ OBJS = ${SRCS:.c=.o}
 NAME = push_swap
 
 .c.o:
-			${CC} -c $< -o ${<:.c=.o}
+			${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			${CC} -o ${NAME} ${OBJS} -L. -lft
+			${CC} ${FLAGS} -o ${NAME} ${OBJS}
 
 all: ${NAME}
 

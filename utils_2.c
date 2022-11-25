@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/25 12:24:46 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:50:35 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	*string_to_int_array(char *str)
 	result = malloc((nb_words) * sizeof(int));
 	while (j < nb_words)
 	{
-		nombre = malloc(100 * sizeof(char));
+		nombre = malloc(1000 * sizeof(char));
 		while (*str == ' ' && *str)
 			str++;
 		while (*str != ' ' && *str)
@@ -129,4 +129,24 @@ int	is_value_in_n_first(int *array,int value, int n)
 		i++;
 	}
 	return (0);
+}
+
+void	free_list(t_node *list)
+{
+	t_node *next_node;
+	int		i;
+
+	i = 0;
+	if (!list)
+		return ;
+	
+	while (list)
+	{	
+		next_node = list->next;
+		free(list);
+		list = next_node;
+		i++;
+	}
+	free(list);
+	list = NULL;
 }
