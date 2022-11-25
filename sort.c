@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
+/*   Updated: 2022/11/25 19:54:01 by vgiordan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	n3_sort(t_node **stack_a)
 {
-	if ((*stack_a)->value > (*stack_a)->next->value)//3 1 2 || 2 1 3 || 3 2 1
+	if ((*stack_a)->value > (*stack_a)->next->value) //3 1 2 || 2 1 3 || 3 2 1
 	{
-		if((*stack_a)->value < (*stack_a)->next->next->value)//2 1 3
+		if((*stack_a)->value < (*stack_a)->next->next->value) //2 1 3
 			sa(stack_a);
 		else if ((*stack_a)->next->value > (*stack_a)->next->next->value) // 3 2 1
 		{
@@ -16,7 +28,7 @@ void	n3_sort(t_node **stack_a)
 	}
 	else//1 2 3 || 1 3 2 || 2 3 1 || 
 	{
-		if((*stack_a)->value > (*stack_a)->next->next->value)//2 3 1
+		if((*stack_a)->value > (*stack_a)->next->next->value)//2 3 1˙
 			rra(stack_a);
 		else if ((*stack_a)->next->value > (*stack_a)->next->next->value) // 1 3 2
 		{
@@ -75,22 +87,11 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sort_array, int p_si
 		{
 			if (is_value_in_n_first(sort_array, (*stack_a)->value, p_size))
 			{
-				//printf("%d is in %d first elements of the array\n", (*stack_a)->value, p_size);
-				//printArray(sort_array, 10);
 				count++;
 				pb(stack_a, stack_b);
 			}
 			else
-			{
-				//printf("%d is NOT in %d first elements of the array", (*stack_a)->value, p_size);
-				//printArray(sort_array, 10);
 				ra(stack_a);
-			}
-			/*printf("Stack A : ");
-			printList(*stack_a);
-			printf("Stack B : ");
-			printList(*stack_b);*/
-			
 		}
 		p_size += p_size_init;
 	}
@@ -105,35 +106,21 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 	if (partition_size == 0)
 		partition_size = 1; 
 	quickSort(sorted_array, 0, size - 1);
-	/*printArray(sorted_array, size);
-	printList(*stack_a);*/
 	partitionning(stack_a, stack_b, sorted_array, partition_size);
-	/*printf("=========End Partitionning==========\n");
-	printList(*stack_b);
-	printf("Partition Size : %d\n", partition_size);
-	printf("====================================\n");*/
 	while (size)
 	{
 		count_rb = 0;
 		while ((*stack_b)->value != sorted_array[size - 1])
 		{
-			//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 			rb(stack_b);
 			count_rb++;
-			//usleep(1000000);
 		}
-		//printf("stackb->value %d, sorted_array_value %d\n", (*stack_b)->value, sorted_array[size - 1]);
 		pa(stack_a, stack_b);
 		size--;
 		while (count_rb-- > 0)
 		{
 			rrb(stack_b);
-			//usleep(1000000);
 		}
-		/*printf("Stack A : ");
-		printList(*stack_a);
-		printf("Stack B : ");
-		printList(*stack_b);*/
 	}
 	
 }

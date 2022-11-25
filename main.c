@@ -6,13 +6,13 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 19:46:01 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:51:08 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static int	check_duplicate(int *list, int size)
+static int	check_d(int *list, int size)
 {
 	int	i;
 	int	cnb;
@@ -100,11 +100,8 @@ int	main(int argc, char *argv[])
 	}
 	nb_array = (int *)string_to_int_array(str);
 	if (nb_array == NULL)
-	{
 		write(2, "Error\n", 6);
-		return (0);
-	}
-	else if (!check_alpha(str) || check_duplicate(nb_array, count_words(str, ' ')))
+	else if (!check_alpha(str) || check_d(nb_array, count_words(str, ' ')))
 		write(2, "Error\n", 6);
 	else if (list_is_sorted(nb_array, count_words(str, ' ')) == 1)
 		return (0);
