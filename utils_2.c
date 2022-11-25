@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/25 16:50:35 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:34:24 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	*string_to_int_array(char *str)
 	int		i;
 	char	*nombre;
 	int		*result;
+	long	temp;
 
 	j = 0;
 	i = 0;
@@ -57,21 +58,24 @@ int	*string_to_int_array(char *str)
 	result = malloc((nb_words) * sizeof(int));
 	while (j < nb_words)
 	{
-		nombre = malloc(1000 * sizeof(char));
+		nombre = malloc(100000 * sizeof(char));
 		while (*str == ' ' && *str)
 			str++;
 		while (*str != ' ' && *str)
 			nombre[i++] = *str++;
 		i = 0;
-		result[j++] = ft_atoi(nombre);
+		temp = ft_atoi(nombre);
 		free(nombre);
+		if (temp > 2147483647 || temp < -2147483648)
+			return (NULL);
+		result[j++] = (int) temp;
 	}
 	return (result);
 }
 
-static int	ft_signe(const char *str)
+static long	ft_signe(const char *str)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while ((!(str[i] >= '0' && str[i] <= '9')) && str[i] != '-'
@@ -94,10 +98,10 @@ static int	ft_signe(const char *str)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	number;
-	int	i;
+	long	number;
+	long	i;
 
 	i = 0;
 	number = 0;

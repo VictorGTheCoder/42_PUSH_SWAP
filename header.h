@@ -26,7 +26,7 @@ void printArray(int array[], int size);
 
 /*------------------libft------------------*/
 
-int 	ft_atoi(const char *);
+long 	ft_atoi(const char *);
 char	*ft_strjoin(int size, char **strs, char *sep);
 
 /*----------------utils_2.c----------------*/
@@ -35,6 +35,7 @@ int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
 int		*string_to_int_array(char *str);
 int		is_value_in_n_first(int *array,int value, int n);
+void	push_array_in_linked_list(int *array, t_node **stack_a, int size);
 
 /*------------------Sort------------------*/
 

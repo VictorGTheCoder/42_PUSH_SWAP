@@ -6,30 +6,42 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 18:21:22 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 19:46:01 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static int	list_is_valid(char *str)
+static int	check_duplicate(int *list, int size)
+{
+	int	i;
+	int	cnb;
+
+	while (size--)
+	{
+		cnb = list[size];
+		i = 0;
+		while (i < size)
+		{
+			if (cnb == list[i])
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
+
+static int	check_alpha(char *str)
 {
 	char	c;
 	int		i;
-	int		j;
 
 	i = 0;
 	while (str[i])
 	{
-		j = 0;
 		c = str[i];
-		if (!(c >= '0' && c <= '9') && c != ' ')
+		if (!(c >= '0' && c <= '9') && c != ' ' && c != '-' && c != '+')
 			return (0);
-		while (j < i - 1)
-		{
-			if (str[j++] == c)
-				return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -43,15 +55,6 @@ static int	list_is_sorted(int *list, int size)
 			return (0);
 	}
 	return (1);
-}
-
-static void	push_array_in_linked_list(int *array, t_node **stack_a, int size)
-{
-	int		i;
-
-	i = 0;
-	while (i < size)
-		push_back(stack_a, array[i++]);
 }
 
 static void	choose_sort(int *nb_input, int size)
@@ -84,30 +87,29 @@ static void	choose_sort(int *nb_input, int size)
 int	main(int argc, char *argv[])
 {
 	int		*nb_array;
-	int		i;
-	char	*value;
+	char	*str;
 
-	if (argc == 2)
+	if (argc == 1)
+		return (0);
+	else if (argc == 2)
+		str = argv[1];
+	else
 	{
-		nb_array = string_to_int_array(argv[1]);
-		if (list_is_valid(argv[1]) == 0)
-			return (0);
-		if (list_is_sorted(nb_array, count_words(argv[1], ' ')) == 1)
-			return (0);
-		choose_sort(nb_array, count_words(argv[1], ' '));
+		argv++;
+		str = ft_strjoin(argc - 1, argv, " ");
+	}
+	nb_array = (int *)string_to_int_array(str);
+	if (nb_array == NULL)
+	{
+		write(2, "Error\n", 6);
 		return (0);
 	}
-	nb_array = malloc(sizeof(int) * (argc - 1));
-	i = 1;
-	while (i < argc)
-	{
-		value = argv[i];
-		nb_array[i - 1] = ft_atoi(value);
-		i++;
-	}
-	if (list_is_sorted(nb_array, argc - 1) == 1)
+	else if (!check_alpha(str) || check_duplicate(nb_array, count_words(str, ' ')))
+		write(2, "Error\n", 6);
+	else if (list_is_sorted(nb_array, count_words(str, ' ')) == 1)
 		return (0);
-	choose_sort(nb_array, argc - 1);
+	else
+		choose_sort(nb_array, count_words(str, ' '));
 	free(nb_array);
 	return (0);
 }
