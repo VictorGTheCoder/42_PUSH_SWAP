@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorgiordani01 <victorgiordani01@stud    +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/24 21:58:31 by victorgiord      ###   ########.fr       */
+/*   Updated: 2022/11/25 12:24:46 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,18 @@ int	*string_to_int_array(char *str)
 	j = 0;
 	i = 0;
 	nb_words = count_words(str, ' ');
-	result = malloc((nb_words + 1) * sizeof(int));
+	result = malloc((nb_words) * sizeof(int));
 	while (j < nb_words)
 	{
-		nombre = malloc(1000 * sizeof(char));
+		nombre = malloc(100 * sizeof(char));
 		while (*str == ' ' && *str)
 			str++;
 		while (*str != ' ' && *str)
 			nombre[i++] = *str++;
 		i = 0;
 		result[j++] = ft_atoi(nombre);
-		printf("Nombre %s\n", nombre);
 		free(nombre);
 	}
-	result[j] = -1;
 	return (result);
 }
 
@@ -108,7 +106,7 @@ int	ft_atoi(const char *str)
 		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'
 			&& str[i] != '\f' && str[i] != '\v' && str[i] != '\r'
 			&& str[i] != '+' && str[i] != '-')
-			return (0);
+			return (-1);
 		i++;
 	}
 	while ((str[i] >= '0' && str[i] <= '9') && str[i])
