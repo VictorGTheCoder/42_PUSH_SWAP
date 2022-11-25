@@ -27,6 +27,7 @@ void printArray(int array[], int size);
 /*------------------libft------------------*/
 
 int 	ft_atoi(const char *);
+char	*ft_strjoin(int size, char **strs, char *sep);
 
 /*----------------utils_2.c----------------*/
 
