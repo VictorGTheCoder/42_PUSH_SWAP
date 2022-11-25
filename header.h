@@ -20,7 +20,7 @@ typedef struct Dlist
 	struct element *last;
 } *t_dlist;
 
-void quickSort(int array[], int low, int high);
+void quick_sort(int array[], int low, int high);
 void printArray(int array[], int size);
 
 
@@ -33,7 +33,7 @@ char	*ft_strjoin(int size, char **strs, char *sep);
 
 int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
-int		*string_to_int_array(char *str);
+int		*string_to_int_array(char *str, int words);
 int		is_value_in_n_first(int *array,int value, int n);
 void	push_array_in_linked_list(int *array, t_node **stack_a, int size);
 
@@ -50,10 +50,7 @@ int		last_node_value(t_node *head);
 int		first_node_value(t_node *head);
 t_node	*get_last_node(t_node *head);
 int		list_get_first(t_dlist list);
-void 	printList(t_node *node);
 void	free_list(t_node *node);
-int		found_max_in_list(t_node *list);
-int		found_min_in_list(t_node *list);
 
 /*-----------------------------------------*/
 

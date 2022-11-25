@@ -6,15 +6,15 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 15:33:53 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:00:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void sa(t_node **head)
+void	sa(t_node **head)
 {
-	int		temp;
+	int	temp;
 
 	if (list_length(*head) < 2)
 		return ;
@@ -24,9 +24,9 @@ void sa(t_node **head)
 	(*head)->next->value = temp;
 }
 
-void sb(t_node **head)
+void	sb(t_node **head)
 {
-	int		temp;
+	int	temp;
 
 	if (list_length(*head) < 2)
 		return ;
@@ -36,7 +36,7 @@ void sb(t_node **head)
 	(*head)->next->value = temp;
 }
 
-void pb(t_node **head1, t_node **head2)
+void	pb(t_node **head1, t_node **head2)
 {
 	int	t1;
 
@@ -48,7 +48,7 @@ void pb(t_node **head1, t_node **head2)
 	push_front(&(*head2), t1);
 }
 
-void pa(t_node **head1, t_node **head2)
+void	pa(t_node **head1, t_node **head2)
 {
 	int	t1;
 
@@ -60,7 +60,7 @@ void pa(t_node **head1, t_node **head2)
 	push_front(&(*head1), t1);
 }
 
-void ra(t_node **head)
+void	ra(t_node **head)
 {
 	printf("ra\n");
 	if (*head == NULL)
@@ -69,7 +69,7 @@ void ra(t_node **head)
 	pop_front(&(*head));
 }
 
-void rb(t_node **head)
+void	rb(t_node **head)
 {
 	printf("rb\n");
 	if (*head == NULL)
@@ -78,7 +78,7 @@ void rb(t_node **head)
 	pop_front(&(*head));
 }
 
-void rra(t_node **head)
+void	rra(t_node **head)
 {
 	printf("rra\n");
 	if (*head == NULL)
@@ -87,7 +87,7 @@ void rra(t_node **head)
 	pop_back(&(*head));
 }
 
-void rrb(t_node **head)
+void	rrb(t_node **head)
 {
 	printf("rrb\n");
 	if (*head == NULL)
@@ -96,7 +96,7 @@ void rrb(t_node **head)
 	pop_back(&(*head));
 }
 
-void ss(t_node **head1, t_node **head2)
+void	ss(t_node **head1, t_node **head2)
 {
 	sa(&(*head1));
 	sb(&(*head2));

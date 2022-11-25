@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 19:51:08 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:01:59 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char *argv[])
 		argv++;
 		str = ft_strjoin(argc - 1, argv, " ");
 	}
-	nb_array = (int *)string_to_int_array(str);
+	nb_array = (int *)string_to_int_array(str, count_words(str, ' '));
 	if (nb_array == NULL)
 		write(2, "Error\n", 6);
 	else if (!check_alpha(str) || check_d(nb_array, count_words(str, ' ')))
