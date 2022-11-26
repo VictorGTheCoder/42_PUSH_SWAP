@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 20:01:59 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 15:12:26 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,12 @@ static void	choose_sort(int *nb_input, int size)
 	}
 	else if (size == 3)
 		n3_sort(&(stack_a));
-	else if (size <= 5)
+	else if (size == 4)
+		n4_sort(&(stack_a), &(stack_b));
+	else if (size == 5)
 		n5_sort(&(stack_a), &(stack_b));
 	else
 		process(&stack_a, &stack_b, nb_input, size);
-	free_list(stack_a);
 }
 
 int	main(int argc, char *argv[])

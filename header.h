@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/26 10:34:11 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 11:38:04 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	push_array_in_linked_list(int *array, t_node **stack_a, int size);
 /*------------------Sort------------------*/
 
 void	n3_sort(t_node **stack_a);
+void	n4_sort(t_node **stack_a, t_node **stack_b);
 void	n5_sort(t_node **stack_a, t_node **stack_b);
 void	process(t_node **stack_a, t_node **stack_b, int *sort_a, int size);
 

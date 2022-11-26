@@ -6,73 +6,11 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/26 10:47:27 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 12:32:03 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	n3_sort(t_node **stack_a)
-{
-	if ((*stack_a)->value > (*stack_a)->next->value)
-	{
-		if ((*stack_a)->value < (*stack_a)->next->next->value)
-			sa(stack_a);
-		else if ((*stack_a)->next->value > (*stack_a)->next->next->value)
-		{
-			sa(stack_a);
-			rra(stack_a);
-		}
-		else
-			ra(stack_a);
-	}
-	else
-	{
-		if ((*stack_a)->value > (*stack_a)->next->next->value)
-			rra(stack_a);
-		else if ((*stack_a)->next->value > (*stack_a)->next->next->value)
-		{
-			sa(stack_a);
-			ra(stack_a);
-		}
-	}
-}
-
-void	n5_sort(t_node **stack_a, t_node **stack_b)
-{
-	int		i;
-
-	pb(stack_a, (stack_b));
-	if (list_length(*stack_a) == 4)
-		pb(stack_a, (stack_b));
-	n3_sort(stack_a);
-	if (list_length(*stack_a) == 5)
-		if ((*stack_b)->value < (*stack_b)->next->value)
-			sb(stack_b);
-	while (list_length(*stack_b))
-	{
-		i = 0;
-		if ((*stack_b)->value < (*stack_a)->value)
-			pa(stack_a, (stack_b));
-		else if ((*stack_b)->value > last_node_value(*stack_a))
-		{
-			pa(stack_a, (stack_b));
-			ra(stack_a);
-		}
-		else
-		{
-			while ((*stack_a)->value > (*stack_b)->value || (*stack_a)->next->value < (*stack_b)->value)
-			{
-				ra(stack_a);
-				i++;
-			}
-			ra(stack_a);
-			pa(stack_a, (stack_b));
-			while (i-- + 1)
-				rra(stack_a);
-		}
-	}
-}
 
 void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
