@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/25 20:20:51 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 10:47:27 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	n5_sort(t_node **stack_a, t_node **stack_b)
 	}
 }
 
-void	partitionning(t_node **stack_a, t_node **stack_b, int *sort_array, int p_size)
+void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
 	int	count;
 	int	p_size_init;
@@ -85,7 +85,7 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sort_array, int p_si
 		count = 0;
 		while (count < p_size_init && (*stack_a))
 		{
-			if (is_value_in_n_first(sort_array, (*stack_a)->value, p_size))
+			if (is_value_in_n_first(sarr, (*stack_a)->value, p_size))
 			{
 				count++;
 				pb(stack_a, stack_b);

@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:58 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/25 20:00:41 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 10:42:59 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,58 +58,4 @@ void	pa(t_node **head1, t_node **head2)
 	t1 = (*head2)->value;
 	pop_front(&(*head2));
 	push_front(&(*head1), t1);
-}
-
-void	ra(t_node **head)
-{
-	printf("ra\n");
-	if (*head == NULL)
-		return ;
-	push_back(&(*head), (*head)->value);
-	pop_front(&(*head));
-}
-
-void	rb(t_node **head)
-{
-	printf("rb\n");
-	if (*head == NULL)
-		return ;
-	push_back(&(*head), (*head)->value);
-	pop_front(&(*head));
-}
-
-void	rra(t_node **head)
-{
-	printf("rra\n");
-	if (*head == NULL)
-		return ;
-	push_front(&(*head), last_node_value(*head));
-	pop_back(&(*head));
-}
-
-void	rrb(t_node **head)
-{
-	printf("rrb\n");
-	if (*head == NULL)
-		return ;
-	push_front(&(*head), last_node_value(*head));
-	pop_back(&(*head));
-}
-
-void	ss(t_node **head1, t_node **head2)
-{
-	sa(&(*head1));
-	sb(&(*head2));
-}
-
-void	rr(t_node **head1, t_node **head2)
-{
-	ra(&(*head1));
-	rb(&(*head2));
-}
-
-void	rrr(t_node **head1, t_node **head2)
-{
-	rra(&(*head1));
-	rrb(&(*head2));
 }

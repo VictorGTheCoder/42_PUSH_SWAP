@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/25 20:03:57 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/26 10:44:40 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,37 +117,4 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	return (number * ft_signe(str));
-}
-
-int	is_value_in_n_first(int *array, int value, int n)
-{
-	int	i;
-
-	i = 0;
-	while (n--)
-	{
-		if (array[i] == value)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	free_list(t_node *list)
-{
-	t_node	*next_node;
-	int		i;
-
-	i = 0;
-	if (!list)
-		return ;
-	while (list)
-	{
-		next_node = list->next;
-		free(list);
-		list = next_node;
-		i++;
-	}
-	free(list);
-	list = NULL;
 }
