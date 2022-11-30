@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:02:17 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/30 12:34:38 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:04:12 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,25 @@ int	*string_to_int_array(char *str, int nb_words)
 	int		i;
 	char	*nombre;
 	int		*result;
-	long	temp;
 
 	j = 0;
-	
 	result = malloc((nb_words) * sizeof(int));
 	while (j < nb_words)
 	{
 		i = 0;
 		while (*str == ' ' && *str)
 			str++;
-		nombre = malloc((size_of_nb(str) + 1)* sizeof(char));
+		nombre = malloc((size_of_nb(str) + 1) * sizeof(char));
 		while (*str != ' ' && *str)
 			nombre[i++] = *str++;
 		nombre[i] = '\0';
-		i = 0;
-		temp = ft_atoi(nombre);
-		free(nombre);
-		if (temp > 2147483647 || temp < -2147483648)
+		if (ft_atoi(nombre) > 2147483647 || ft_atoi(nombre) < -2147483648)
 		{
-			free(result);
+			free_2e(nombre, result);
 			return (NULL);
 		}
-			
-		result[j++] = (int) temp;
+		result[j++] = (int)ft_atoi(nombre);
+		free(nombre);
 	}
 	return (result);
 }

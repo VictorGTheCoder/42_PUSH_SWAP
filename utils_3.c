@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:47:13 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/30 11:20:57 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:05:01 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,10 @@ int	size_of_nb(char *str)
 	while (str[i] && str[i] != ' ')
 		i++;
 	return (i);
+}
+
+void	free_2e(char *str, int *nb)
+{
+	free(str);
+	free(nb);
 }
