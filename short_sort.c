@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:31:44 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/26 12:32:36 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:20:19 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ void	n4_sort(t_node **stack_a, t_node **stack_b)
 	}
 	else if ((*stack_b)->value < (*stack_a)->next->next->value)
 	{
-		ra(stack_a);
-		ra(stack_a);
+		rra(stack_a);
 		pa(stack_a, stack_b);
-		rra(stack_a);
-		rra(stack_a);
+		ra(stack_a);
+		ra(stack_a);
 	}
 	else
 	{

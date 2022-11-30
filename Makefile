@@ -2,7 +2,7 @@ SRCS = utils.c utils_2.c utils_3.c sort_utils.c sort_utils_2.c sort_utils_3.c sh
 
 CC = gcc
 
-FLAGS = -Werror -Wall -Wextra -fsanitize=address 
+FLAGS = -Werror -Wall -Wextra
 
 OBJS = ${SRCS:.c=.o}
 

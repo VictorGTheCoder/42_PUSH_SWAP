@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:07:53 by victorgiord       #+#    #+#             */
-/*   Updated: 2022/11/26 15:12:26 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:35:04 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static int	check_alpha(char *str)
 		c = str[i];
 		if (!(c >= '0' && c <= '9') && c != ' ' && c != '-' && c != '+')
 			return (0);
+		if (str[i] == '+' || str[i] == '-')
+		{
+			if (str[i + 1] < '0' || str[i + 1] > '9')
+				return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -83,6 +88,7 @@ static void	choose_sort(int *nb_input, int size)
 		n5_sort(&(stack_a), &(stack_b));
 	else
 		process(&stack_a, &stack_b, nb_input, size);
+	free_list(stack_a);
 }
 
 int	main(int argc, char *argv[])
@@ -93,21 +99,21 @@ int	main(int argc, char *argv[])
 	if (argc == 1)
 		return (0);
 	else if (argc == 2)
-		str = argv[1];
+		str = strdup(argv[1]);
 	else
-	{
-		argv++;
-		str = ft_strjoin(argc - 1, argv, " ");
-	}
+		str = ft_strjoin(argc - 1, ++argv, " ");
 	nb_array = (int *)string_to_int_array(str, count_words(str, ' '));
 	if (nb_array == NULL)
 		write(2, "Error\n", 6);
 	else if (!check_alpha(str) || check_d(nb_array, count_words(str, ' ')))
 		write(2, "Error\n", 6);
 	else if (list_is_sorted(nb_array, count_words(str, ' ')) == 1)
-		return (0);
+	{
+	}
 	else
 		choose_sort(nb_array, count_words(str, ' '));
-	free(nb_array);
+	if (nb_array)
+		free(nb_array);
+	free(str);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:47:13 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/26 10:44:14 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:20:57 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ void	free_list(t_node *list)
 	}
 	free(list);
 	list = NULL;
+}
+
+int	size_of_nb(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		i++;
+	return (i);
 }
