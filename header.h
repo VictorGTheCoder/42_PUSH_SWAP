@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/30 13:04:50 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:37:42 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct node
 }	t_node;
 
 void	quick_sort(int array[], int low, int high);
-void	printArray(int array[], int size);
 int		size_of_nb(char *str);
 void	free_2e(char *str, int *nb);
 

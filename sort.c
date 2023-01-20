@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/26 12:32:03 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:38:27 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 	int		count_rb;
 	int		partition_size;
 
-	partition_size = size / 25;
-	if (partition_size == 0)
-		partition_size = 1;
+	if (size <= 200)
+		partition_size = 12;
+	else
+		partition_size = 20;
 	quick_sort(sorted_array, 0, size - 1);
 	partitionning(stack_a, stack_b, sorted_array, partition_size);
 	while (size)
