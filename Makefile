@@ -1,6 +1,6 @@
 SRCS = utils.c utils_2.c utils_3.c sort_utils.c sort_utils_2.c sort_utils_3.c short_sort.c push_and_pop.c main.c sort.c quick_sort.c strjoin.c 
 
-CC = gcc
+CC = gcc -fsanitize=address 
 
 FLAGS = -Werror -Wall -Wextra
 

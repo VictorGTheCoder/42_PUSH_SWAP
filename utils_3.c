@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:47:13 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/11/30 13:07:04 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:08:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	is_value_in_n_first(int *array, int value, int n)
 	while (n--)
 	{
 		if (array[i] == value)
-			return (1);
+			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 void	free_list(t_node *list)
