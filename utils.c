@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:08:01 by victorgiord       #+#    #+#             */
-/*   Updated: 2023/01/20 15:37:30 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:36:53 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,23 @@ int	list_length(t_node *node)
 	int	i;
 
 	i = 0;
+	if (!node)
+		return (0);
 	while (node)
 	{
 		node = node->next;
 		i++;
 	}
 	return (i);
+}
+
+void	print_list(t_node *list)
+{
+	while (list)
+	{
+		printf("[%d] ", list->value);
+		list = list->next;
+	}
+	printf("\n");
+	
 }

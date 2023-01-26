@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/25 16:12:05 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:37:50 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ void	ss(t_node **head1, t_node **head2);
 void	rr(t_node **head1, t_node **head2);
 void	rrr(t_node **head1, t_node **head2);
 
+
+void	print_list(t_node *list);
 #endif

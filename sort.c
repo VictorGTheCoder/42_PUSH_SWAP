@@ -6,91 +6,119 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/25 18:49:28 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:40:02 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-/*t_sort	scan_stack(t_node **stack, int p_range)
+int	get_smallest_value(t_node *list)
 {
-	t_sort	s;
-	int		i;
-	int		j;
-	t_node	*cpy;
-	t_node	*last;
+	int	little;
 
-	cpy = *stack;
-	i = 0;
-	j = 0;
-	printf("prange %d\n", p_range);
-	while (cpy && (cpy->value > p_range))
+	little = list->value;
+	while (list)
 	{
-		cpy = cpy->next;
+		if (list->value < little)
+			little = list->value;
+		list = list->next;
+	}
+	return (little);
+}
+
+int	get_biggest_value(t_node *list)
+{
+	int	big;
+
+	big = list->value;
+	while (list)
+	{
+		if (list->value > big)
+			big = list->value;
+		list = list->next;
+	}
+	return (big);
+}
+
+t_sort	find_good_place(int x, t_node *list)
+{
+	int		i;
+	t_sort	t;
+	int		ll;
+
+	ll = list_length(list);
+	i = 0;
+	if (x > get_biggest_value(list))
+	{
+		while (list && list->value != get_biggest_value(list))
+		{
+			list = list->next;
+			i++;
+		}
+		if (i > ll / 2)
+			t = (t_sort){1, ll - i};
+		else
+			t = (t_sort){0, i};
+		return (t);
+	}
+	if (x < get_smallest_value(list))
+	{
+		while (list && list->value != get_smallest_value(list))
+		{
+			list = list->next;
+			i++;
+		}
+		if (i > ll / 2)
+			t = (t_sort){1, ll - i};
+		else
+			t = (t_sort){0, i};
+		return (t);
+	}
+	while (42)
+	{
+		if (list && x > list->value)
+		{
+			if (!(list->next) || x < list->next->value)
+			{
+				i++;
+				if (i > ll / 2)
+					t = (t_sort){1, ll - i};
+				else
+					t = (t_sort){0, i};
+				return (t);
+			}
+		}
+		if (list->next)
+			list = list->next;
 		i++;
 	}
-	last = get_last_node(cpy);
-	while (last && (last->value > p_range))
-	{
-		last = last->prv;
-		j++;
-	}
-	if (i <= j)
-	{
-		s = (t_sort){0, i};
-	}
-	else
-	{
-		s = (t_sort){1, j};
-	}
-	return (s);
-}*/
+}
 
 void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
-	int	count;
 	int	p_range;
-	//t_sort	s;
-	(void) sarr;
-	p_range = p_size;
-	while ((*stack_a))
-	{
-		count = 0;
-		while ( (*stack_a))
-		{
-			
-			/*s = scan_stack(stack_a, p_range);
-			while (s.step-- > 0)
-			{
-				if (s.r_or_rr == 0)
-					ra(stack_a);
-				else
-					rra(stack_a);
-			}
-			pb(stack_a, stack_b);
-			count++;*/
 
-			if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
-			{
-				count++;
-				pb(stack_a, stack_b);
-				if((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value)
-					sb(stack_b);
-				p_range++;
-			}
-			else
-			{
-				ra(stack_a);
-			}
+	p_range = p_size;
+	while (list_length(*stack_a) > 0)
+	{
+		if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
+		{
+			pb(stack_a, stack_b);
+			if((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value)
+				sb(stack_b);
+			p_range++;
 		}
-		//p_range += p_size;
+		else
+		{
+			ra(stack_a);
+		}
 	}
 }
 
 void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 {
-	int		count_rb;
 	int		partition_size;
+	t_sort	s;
 
 	if (size <= 100)
 		partition_size = 7;
@@ -98,24 +126,35 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 		partition_size = 15;
 	quick_sort(sorted_array, 0, size - 1);
 	partitionning(stack_a, stack_b, sorted_array, partition_size);
-	while (size)
+	while (size > 0)
 	{
-		count_rb = 0;
-		while ((*stack_b)->value != sorted_array[size - 1])
+		/*printf("=====START=====\n");
+		printf("List A : ");
+		print_list(*stack_a);
+		printf("List B : ");
+		print_list(*stack_b);*/
+		if (!(*stack_a))
 		{
-			rb(stack_b);
-			count_rb++;
+			pa(stack_a, stack_b);
+			size--;
 		}
-		pa(stack_a, stack_b);
-		size--;
-		while (count_rb-- > 0)
+		else
 		{
-			if ((*stack_b)->value == sorted_array[size - 1])
+			//printf("OK\n");
+			s = find_good_place((*stack_b)->value, *stack_a);
+			while (s.step-- > 0)
 			{
-				pa(stack_a, stack_b);
-				size--;
+				//printf("OK2\n");
+				if (s.r_or_rr == 0)
+					ra(stack_a);
+				else
+					rra(stack_a);
 			}
-			rrb(stack_b);
+			size--;
+			pa(stack_a, stack_b);
 		}
+		//printf("======END======\n");
 	}
+	while (get_smallest_value(*stack_a) != (*stack_a)->value)
+		rra(stack_a);
 }
