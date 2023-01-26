@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/26 17:37:39 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:33:51 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 	//t_sort	s;
 
 	p_range = p_size;
-	while (*stack_a)
+	while (list_length(*stack_a) > 0)
 	{
 		/*printf("A :");
 		print_list(*stack_a);
@@ -138,8 +138,13 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 		{
 			pb(stack_a, stack_b);
 			if((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value)
-				sb(stack_b);
-			p_range += 1;
+			{
+				if ((*stack_a) && (*stack_a)->next && (*stack_a)->next->value < (*stack_a)->value)
+					ss(stack_a, stack_b);
+				else
+					sb(stack_b);
+			}
+			p_range++;
 		}
 		else
 		{
@@ -153,6 +158,7 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 					rra(stack_a);
 			}*/
 		}
+
 	}
 }
 
@@ -161,10 +167,12 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 	int		partition_size;
 	t_sort	s;
 
-	if (size <= 100)
-		partition_size = 7;
+	if (size <= 20)
+		partition_size = 3;
+	else if (size <= 100)
+		partition_size = 10;
 	else
-		partition_size = 15;
+		partition_size = 20;
 	quick_sort(sorted_array, 0, size - 1);
 	partitionning(stack_a, stack_b, sorted_array, partition_size);
 	while (size > 0)
