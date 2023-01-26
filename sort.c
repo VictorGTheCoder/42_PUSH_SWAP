@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/26 15:40:02 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:37:39 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,23 +94,64 @@ t_sort	find_good_place(int x, t_node *list)
 	}
 }
 
+/*t_sort	get_next(t_node *list, int p_range, int array[])
+{
+	t_sort	s;
+	t_node	*cpy;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	cpy = get_last_node(list);
+	while (is_value_in_n_first(array, list->value, p_range) == -1)
+	{
+		i++;
+		list = list->next;
+	}
+	while (is_value_in_n_first(array, cpy->value, p_range) == -1)
+	{
+		j++;
+		cpy = cpy->prv;
+	}
+	if (i > j)
+		s = (t_sort){1, ++j};
+	else
+		s = (t_sort){0, i};
+	//printf("return %d, %d\n", i, j);
+	return (s);
+}*/
+
 void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
 	int	p_range;
+	//t_sort	s;
 
 	p_range = p_size;
-	while (list_length(*stack_a) > 0)
+	while (*stack_a)
 	{
+		/*printf("A :");
+		print_list(*stack_a);
+		printf("B :");
+		print_list(*stack_b);*/
 		if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
 		{
 			pb(stack_a, stack_b);
 			if((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value)
 				sb(stack_b);
-			p_range++;
+			p_range += 1;
 		}
 		else
 		{
 			ra(stack_a);
+			/*s = get_next(*stack_a, p_range, sarr);
+			while (s.step-- > 0)
+			{
+				if (s.r_or_rr == 0)
+					ra(stack_a);
+				else
+					rra(stack_a);
+			}*/
 		}
 	}
 }
