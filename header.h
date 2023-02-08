@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/26 12:37:50 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:00:50 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		count_words(char const *str, char c);
 size_t	ft_strlen(const char *str);
 int		*string_to_int_array(char *str, int words);
 int		is_value_in_n_first(int *array, int value, int n);
+int		is_value_in_n_last(int *array, int value, int n);
 void	push_array_in_linked_list(int *array, t_node **stack_a, int size);
 
 /*------------------Sort------------------*/

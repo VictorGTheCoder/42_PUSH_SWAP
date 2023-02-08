@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 22:08:01 by victorgiord       #+#    #+#             */
-/*   Updated: 2023/01/26 12:36:53 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:09:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,4 @@ void	print_list(t_node *list)
 		list = list->next;
 	}
 	printf("\n");
-	
 }

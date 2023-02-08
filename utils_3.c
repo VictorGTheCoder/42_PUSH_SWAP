@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:47:13 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/25 16:08:41 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:58:36 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ int	is_value_in_n_first(int *array, int value, int n)
 			return (i);
 		i++;
 	}
+	return (-1);
+}
+
+int	is_value_in_n_last(int *array, int value, int n)
+{
+	int	i;
+
+	i = 499;
+	while (n--)
+	{
+		if (array[i] == value)
+			return (i);
+		i--;
+	}
+	
 	return (-1);
 }
 

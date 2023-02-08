@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/26 18:33:51 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:45:44 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,26 +125,99 @@ t_sort	find_good_place(int x, t_node *list)
 void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
 	int	p_range;
-	//t_sort	s;
+	int p_range_inverse;
+	int		i;
+	int arr_size;
 
+	arr_size = list_length(*stack_a);
+	i = 11;	
+	if (arr_size <= 499)
+		i = 0;
+	
+	//t_sort	s;
 	p_range = p_size;
+	p_range_inverse = p_size;
 	while (list_length(*stack_a) > 0)
 	{
 		/*printf("A :");
 		print_list(*stack_a);
 		printf("B :");
 		print_list(*stack_b);*/
+		
 		if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
 		{
+			
 			pb(stack_a, stack_b);
-			if((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value)
+			/*while (list_length(*stack_b) != 1 && is_value_in_n_last(sarr, (*stack_b)->next->value, i) != -1)
+			{
+				rrb(stack_b);
+			}*/
+			if ((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value && is_value_in_n_last(sarr, (*stack_b)->next->value, i) == -1)
 			{
 				if ((*stack_a) && (*stack_a)->next && (*stack_a)->next->value < (*stack_a)->value)
 					ss(stack_a, stack_b);
 				else
 					sb(stack_b);
 			}
-			p_range++;
+			if (list_length(*stack_a) <= 450 && (p_range - list_length(*stack_b)) >= 22)
+			{
+				
+			}
+			if (list_length(*stack_a) <= 360 && (p_range - list_length(*stack_b)) >= 21)// 23 = 6654 // 22 = 6650 // 21 = 6642
+			{
+				
+			}
+			if (list_length(*stack_a) <= 300 && (p_range - list_length(*stack_b)) >= 20)// 23 = 6654 // 22 = 6650 // 21 = 6642
+			{
+				
+			}
+			else if (list_length(*stack_a) <= 250 && (p_range - list_length(*stack_b)) >= 18)//18 = 6650 / 17 = 6653 / 19 = 6659
+			{
+				
+			}
+			else if (list_length(*stack_a) <= 200 && (p_range - list_length(*stack_b)) >= 15)
+			{
+				
+			}
+			else if (list_length(*stack_a) <= 150 && (p_range - list_length(*stack_b)) >= 12)//
+			{
+				
+			}
+			else if (list_length(*stack_a) <= 70 && (p_range - list_length(*stack_b)) >= 9)//+/-
+			{
+				
+			}
+			else if (list_length(*stack_a) <= 40 && (p_range - list_length(*stack_b)) >= 8)
+			{
+
+			}
+			else if (list_length(*stack_a) <= 37 && (p_range - list_length(*stack_b)) >= 7)
+			{
+
+			}
+			else if (list_length(*stack_a) <= 34 && (p_range - list_length(*stack_b)) >= 6)
+			{
+
+			}
+			else if (list_length(*stack_a) <= 30 && (p_range - list_length(*stack_b)) >= 5)
+			{
+
+			}
+			else if (list_length(*stack_a) <= 20 && (p_range - list_length(*stack_b)) >= 4)
+			{
+
+			}
+			else
+				p_range += 1;
+			
+			//printf("Partition size %f\n", p_range);
+			//usleep(50000);
+		}
+		else if(is_value_in_n_last(sarr, (*stack_a)->value, i) != -1)
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+				i++;
 		}
 		else
 		{
@@ -160,6 +233,15 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 		}
 
 	}
+	while (i-- > 11)
+	{
+		rrb(stack_b);
+		if ((*stack_b)->value == sarr[arr_size - 1])
+			pa(stack_a, stack_b);
+		if ((*stack_b)->value < (*stack_b)->next->value)
+			sb(stack_b);
+	}
+		
 }
 
 void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
@@ -168,20 +250,15 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 	t_sort	s;
 
 	if (size <= 20)
-		partition_size = 3;
+		partition_size = 4;
 	else if (size <= 100)
-		partition_size = 10;
+		partition_size = 15;
 	else
-		partition_size = 20;
+		partition_size = 22;
 	quick_sort(sorted_array, 0, size - 1);
 	partitionning(stack_a, stack_b, sorted_array, partition_size);
-	while (size > 0)
+	while (list_length(*stack_b) > 0)
 	{
-		/*printf("=====START=====\n");
-		printf("List A : ");
-		print_list(*stack_a);
-		printf("List B : ");
-		print_list(*stack_b);*/
 		if (!(*stack_a))
 		{
 			pa(stack_a, stack_b);
@@ -189,20 +266,39 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 		}
 		else
 		{
-			//printf("OK\n");
 			s = find_good_place((*stack_b)->value, *stack_a);
-			while (s.step-- > 0)
+			while (s.step > 1)
 			{
-				//printf("OK2\n");
 				if (s.r_or_rr == 0)
+				{
 					ra(stack_a);
+				}
 				else
+				{
 					rra(stack_a);
+				}
+				s.step--;
 			}
+			if (s.step > 0)
+			{
+				if (s.r_or_rr == 0)
+				{
+					pa(stack_a, stack_b);
+					if ((*stack_b) && (*stack_b)->next &&(*stack_b)->value < (*stack_b)->next->value)
+						ss(stack_a, stack_b);
+					else
+						sa(stack_a);
+				}
+				else
+				{	
+					rra(stack_a);
+					pa(stack_a, stack_b);	
+				}
+			}
+			else
+				pa(stack_a, stack_b);
 			size--;
-			pa(stack_a, stack_b);
 		}
-		//printf("======END======\n");
 	}
 	while (get_smallest_value(*stack_a) != (*stack_a)->value)
 		rra(stack_a);
