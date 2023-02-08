@@ -6,39 +6,11 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/08 17:45:44 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:45:37 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-int	get_smallest_value(t_node *list)
-{
-	int	little;
-
-	little = list->value;
-	while (list)
-	{
-		if (list->value < little)
-			little = list->value;
-		list = list->next;
-	}
-	return (little);
-}
-
-int	get_biggest_value(t_node *list)
-{
-	int	big;
-
-	big = list->value;
-	while (list)
-	{
-		if (list->value > big)
-			big = list->value;
-		list = list->next;
-	}
-	return (big);
-}
 
 t_sort	find_good_place(int x, t_node *list)
 {
@@ -94,64 +66,30 @@ t_sort	find_good_place(int x, t_node *list)
 	}
 }
 
-/*t_sort	get_next(t_node *list, int p_range, int array[])
-{
-	t_sort	s;
-	t_node	*cpy;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	cpy = get_last_node(list);
-	while (is_value_in_n_first(array, list->value, p_range) == -1)
-	{
-		i++;
-		list = list->next;
-	}
-	while (is_value_in_n_first(array, cpy->value, p_range) == -1)
-	{
-		j++;
-		cpy = cpy->prv;
-	}
-	if (i > j)
-		s = (t_sort){1, ++j};
-	else
-		s = (t_sort){0, i};
-	//printf("return %d, %d\n", i, j);
-	return (s);
+/*void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
+{
+	
 }*/
 
-void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
+void	a_to_b(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
-	int	p_range;
 	int p_range_inverse;
-	int		i;
+	int	i;
 	int arr_size;
-
+	int	p_range;
+	
 	arr_size = list_length(*stack_a);
 	i = 11;	
 	if (arr_size <= 499)
 		i = 0;
-	
-	//t_sort	s;
 	p_range = p_size;
 	p_range_inverse = p_size;
 	while (list_length(*stack_a) > 0)
 	{
-		/*printf("A :");
-		print_list(*stack_a);
-		printf("B :");
-		print_list(*stack_b);*/
-		
 		if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
 		{
-			
 			pb(stack_a, stack_b);
-			/*while (list_length(*stack_b) != 1 && is_value_in_n_last(sarr, (*stack_b)->next->value, i) != -1)
-			{
-				rrb(stack_b);
-			}*/
 			if ((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value && is_value_in_n_last(sarr, (*stack_b)->next->value, i) == -1)
 			{
 				if ((*stack_a) && (*stack_a)->next && (*stack_a)->next->value < (*stack_a)->value)
@@ -159,79 +97,20 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 				else
 					sb(stack_b);
 			}
-			if (list_length(*stack_a) <= 450 && (p_range - list_length(*stack_b)) >= 22)
-			{
-				
-			}
-			if (list_length(*stack_a) <= 360 && (p_range - list_length(*stack_b)) >= 21)// 23 = 6654 // 22 = 6650 // 21 = 6642
-			{
-				
-			}
-			if (list_length(*stack_a) <= 300 && (p_range - list_length(*stack_b)) >= 20)// 23 = 6654 // 22 = 6650 // 21 = 6642
-			{
-				
-			}
-			else if (list_length(*stack_a) <= 250 && (p_range - list_length(*stack_b)) >= 18)//18 = 6650 / 17 = 6653 / 19 = 6659
-			{
-				
-			}
-			else if (list_length(*stack_a) <= 200 && (p_range - list_length(*stack_b)) >= 15)
-			{
-				
-			}
-			else if (list_length(*stack_a) <= 150 && (p_range - list_length(*stack_b)) >= 12)//
-			{
-				
-			}
-			else if (list_length(*stack_a) <= 70 && (p_range - list_length(*stack_b)) >= 9)//+/-
-			{
-				
-			}
-			else if (list_length(*stack_a) <= 40 && (p_range - list_length(*stack_b)) >= 8)
-			{
-
-			}
-			else if (list_length(*stack_a) <= 37 && (p_range - list_length(*stack_b)) >= 7)
-			{
-
-			}
-			else if (list_length(*stack_a) <= 34 && (p_range - list_length(*stack_b)) >= 6)
-			{
-
-			}
-			else if (list_length(*stack_a) <= 30 && (p_range - list_length(*stack_b)) >= 5)
-			{
-
-			}
-			else if (list_length(*stack_a) <= 20 && (p_range - list_length(*stack_b)) >= 4)
-			{
-
-			}
-			else
+			if (!((list_length(*stack_a) <= 450 && (p_range - list_length(*stack_b)) >= 22) 
+				&& (list_length(*stack_a) <= 300 && (p_range - list_length(*stack_b)) >= 18)
+				&& (list_length(*stack_a) <= 200 && (p_range - list_length(*stack_b)) >= 15)
+				&& (list_length(*stack_a) <= 100 && (p_range - list_length(*stack_b)) >= 11)))
 				p_range += 1;
-			
-			//printf("Partition size %f\n", p_range);
-			//usleep(50000);
 		}
 		else if(is_value_in_n_last(sarr, (*stack_a)->value, i) != -1)
 		{
 			pb(stack_a, stack_b);
 			rb(stack_b);
-				i++;
+			i++;
 		}
 		else
-		{
 			ra(stack_a);
-			/*s = get_next(*stack_a, p_range, sarr);
-			while (s.step-- > 0)
-			{
-				if (s.r_or_rr == 0)
-					ra(stack_a);
-				else
-					rra(stack_a);
-			}*/
-		}
-
 	}
 	while (i-- > 11)
 	{
@@ -241,42 +120,25 @@ void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 		if ((*stack_b)->value < (*stack_b)->next->value)
 			sb(stack_b);
 	}
-		
 }
 
-void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
+void	b_to_a(t_node **stack_a, t_node **stack_b)
 {
-	int		partition_size;
 	t_sort	s;
 
-	if (size <= 20)
-		partition_size = 4;
-	else if (size <= 100)
-		partition_size = 15;
-	else
-		partition_size = 22;
-	quick_sort(sorted_array, 0, size - 1);
-	partitionning(stack_a, stack_b, sorted_array, partition_size);
 	while (list_length(*stack_b) > 0)
 	{
 		if (!(*stack_a))
-		{
 			pa(stack_a, stack_b);
-			size--;
-		}
 		else
 		{
 			s = find_good_place((*stack_b)->value, *stack_a);
 			while (s.step > 1)
 			{
 				if (s.r_or_rr == 0)
-				{
 					ra(stack_a);
-				}
 				else
-				{
 					rra(stack_a);
-				}
 				s.step--;
 			}
 			if (s.step > 0)
@@ -297,9 +159,24 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 			}
 			else
 				pa(stack_a, stack_b);
-			size--;
 		}
 	}
+}
+
+void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
+{
+	int		partition_size;
+
+	if (size <= 20)
+		partition_size = 4;
+	else if (size <= 100)
+		partition_size = 15;
+	else
+		partition_size = 22;
+	quick_sort(sorted_array, 0, size - 1);
+	a_to_b(stack_a, stack_b, sorted_array, partition_size);
+	b_to_a(stack_a, stack_b);
+
 	while (get_smallest_value(*stack_a) != (*stack_a)->value)
 		rra(stack_a);
 }

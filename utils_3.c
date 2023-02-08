@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:47:13 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/08 12:58:36 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:10:14 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,6 @@ void	push_array_in_linked_list(int *array, t_node **stack_a, int size)
 	i = 0;
 	while (i < size)
 		push_back(stack_a, array[i++]);
-}
-
-int	is_value_in_n_first(int *array, int value, int n)
-{
-	int	i;
-
-	i = 0;
-	while (n--)
-	{
-		if (array[i] == value)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int	is_value_in_n_last(int *array, int value, int n)
-{
-	int	i;
-
-	i = 499;
-	while (n--)
-	{
-		if (array[i] == value)
-			return (i);
-		i--;
-	}
-	
-	return (-1);
 }
 
 void	free_list(t_node *list)
