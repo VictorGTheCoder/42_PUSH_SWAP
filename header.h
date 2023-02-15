@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/15 16:08:02 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:41:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct sort
 	int	step;
 }	t_sort;
 
-typedef struct stack_list
+typedef struct valise
 {
-	t_node	**list1;
-	t_node	**list2;
-}	t_list;
+	int	*i;
+	int	*range;
+}	t_val;
 
 /*------------------sort_2.c------------------*/
 
