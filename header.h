@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:29:39 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/08 18:16:43 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:08:02 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ typedef struct sort
 	int	r_or_rr;
 	int	step;
 }	t_sort;
+
+typedef struct stack_list
+{
+	t_node	**list1;
+	t_node	**list2;
+}	t_list;
+
+/*------------------sort_2.c------------------*/
+
+t_sort	biggest_or_smallest(int x, t_node *list, t_sort *t, int ll);
+t_sort	find_good_place(int x, t_node *list);
 
 void	quick_sort(int array[], int low, int high);
 int		size_of_nb(char *str);

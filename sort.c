@@ -6,111 +6,58 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:53:10 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/08 18:45:37 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:11:36 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_sort	find_good_place(int x, t_node *list)
+void	front_part(t_list test, int *sarr, int *p_range, int *i)
 {
-	int		i;
-	t_sort	t;
-	int		ll;
+	t_node **stack_a;
+	t_node **stack_b;
 
-	ll = list_length(list);
-	i = 0;
-	if (x > get_biggest_value(list))
+	stack_a = test.list1;
+	stack_b = test.list2;
+	if (is_value_in_n_first(sarr, (*stack_a)->value, *p_range) != -1)
 	{
-		while (list && list->value != get_biggest_value(list))
+		pb(stack_a, stack_b);
+		if ((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value
+			&& is_value_in_n_last(sarr, (*stack_b)->next->value, *i) == -1)
 		{
-			list = list->next;
-			i++;
+			if ((*stack_a) && (*stack_a)->next && (*stack_a)->next->value < (*stack_a)->value)
+				ss(stack_a, stack_b);
+			else
+				sb(stack_b);
 		}
-		if (i > ll / 2)
-			t = (t_sort){1, ll - i};
-		else
-			t = (t_sort){0, i};
-		return (t);
+		*p_range += 1;
 	}
-	if (x < get_smallest_value(list))
+	else if(is_value_in_n_last(sarr, (*stack_a)->value, *i) != -1)
 	{
-		while (list && list->value != get_smallest_value(list))
-		{
-			list = list->next;
-			i++;
-		}
-		if (i > ll / 2)
-			t = (t_sort){1, ll - i};
-		else
-			t = (t_sort){0, i};
-		return (t);
+		pb(stack_a, stack_b);
+		rb(stack_b);
+		(*i)++;
 	}
-	while (42)
-	{
-		if (list && x > list->value)
-		{
-			if (!(list->next) || x < list->next->value)
-			{
-				i++;
-				if (i > ll / 2)
-					t = (t_sort){1, ll - i};
-				else
-					t = (t_sort){0, i};
-				return (t);
-			}
-		}
-		if (list->next)
-			list = list->next;
-		i++;
-	}
+	else
+		ra(stack_a);
 }
-
-
-/*void	partitionning(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
-{
-	
-}*/
 
 void	a_to_b(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
-	int p_range_inverse;
-	int	i;
-	int arr_size;
+	int	p_range_inverse;
 	int	p_range;
-	
+	int	i;
+	int	arr_size;
+
 	arr_size = list_length(*stack_a);
-	i = 11;	
+	i = 11;
 	if (arr_size <= 499)
 		i = 0;
 	p_range = p_size;
 	p_range_inverse = p_size;
 	while (list_length(*stack_a) > 0)
 	{
-		if (is_value_in_n_first(sarr, (*stack_a)->value, p_range) != -1)
-		{
-			pb(stack_a, stack_b);
-			if ((*stack_b)->next && (*stack_b)->value < (*stack_b)->next->value && is_value_in_n_last(sarr, (*stack_b)->next->value, i) == -1)
-			{
-				if ((*stack_a) && (*stack_a)->next && (*stack_a)->next->value < (*stack_a)->value)
-					ss(stack_a, stack_b);
-				else
-					sb(stack_b);
-			}
-			if (!((list_length(*stack_a) <= 450 && (p_range - list_length(*stack_b)) >= 22) 
-				&& (list_length(*stack_a) <= 300 && (p_range - list_length(*stack_b)) >= 18)
-				&& (list_length(*stack_a) <= 200 && (p_range - list_length(*stack_b)) >= 15)
-				&& (list_length(*stack_a) <= 100 && (p_range - list_length(*stack_b)) >= 11)))
-				p_range += 1;
-		}
-		else if(is_value_in_n_last(sarr, (*stack_a)->value, i) != -1)
-		{
-			pb(stack_a, stack_b);
-			rb(stack_b);
-			i++;
-		}
-		else
-			ra(stack_a);
+		front_part((t_list) {stack_a, stack_b}, sarr, &p_range, &i);
 	}
 	while (i-- > 11)
 	{
