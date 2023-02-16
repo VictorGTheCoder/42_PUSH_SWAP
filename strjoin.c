@@ -65,11 +65,9 @@ static void	result_fill(char **strs, char *result, char *sep, int size)
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int		k;
 	int		strs_length;
 	char	*result;
 
-	k = 0;
 	result = NULL;
 	if (size == 0)
 	{

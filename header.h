@@ -42,7 +42,7 @@ typedef struct valise
 t_sort	biggest_or_smallest(int x, t_node *list, t_sort *t, int ll);
 t_sort	find_good_place(int x, t_node *list);
 
-void	quick_sort(int array[], int low, int high);
+void    bubble_sort(int array[], int size);
 int		size_of_nb(char *str);
 void	free_2e(char *str, int *nb);
 

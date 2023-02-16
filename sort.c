@@ -41,7 +41,6 @@ void	front_part(t_node **stack_a, t_node **stack_b, int *sarr, t_val *val)
 
 void	a_to_b(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 {
-	int	p_range_inverse;
 	int	p_range;
 	int	i;
 	int	arr_size;
@@ -51,7 +50,6 @@ void	a_to_b(t_node **stack_a, t_node **stack_b, int *sarr, int p_size)
 	if (arr_size <= 499)
 		i = 0;
 	p_range = p_size;
-	p_range_inverse = p_size;
 	while (list_length(*stack_a) > 0)
 		front_part(stack_a, stack_b, sarr, &((t_val){&i, &p_range}));
 	while (i-- > 11)
@@ -121,7 +119,7 @@ void	process(t_node **stack_a, t_node **stack_b, int *sorted_array, int size)
 		partition_size = 15;
 	else
 		partition_size = 22;
-	quick_sort(sorted_array, 0, size - 1);
+	bubble_sort(sorted_array, size);
 	a_to_b(stack_a, stack_b, sorted_array, partition_size);
 	b_to_a(stack_a, stack_b);
 	while (get_smallest_value(*stack_a) != (*stack_a)->value)
